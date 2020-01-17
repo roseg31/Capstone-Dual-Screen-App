@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Collections;
 
 namespace WindowConfiguration
 {
@@ -21,6 +22,8 @@ namespace WindowConfiguration
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int x, int Y, int cx, int cy, int wFlags);
 
         //Struct passed into the window handler section which gives us the window position and size (after calculation)
         [StructLayout(LayoutKind.Sequential)]
@@ -68,6 +71,9 @@ namespace WindowConfiguration
                     Console.WriteLine("Window Width: " + Math.Abs((rect.Left) - (rect.Right)));
                     Console.WriteLine("Window Height: " + Math.Abs((rect.Top) - (rect.Bottom)));
                     Console.WriteLine("\n");
+
+                    // Change window position and size of all foreground window applications to the top left.
+                    // SetWindowPos(hWnd, 0, 0, 0, 500, 500, 0);
                 }
 
             }
