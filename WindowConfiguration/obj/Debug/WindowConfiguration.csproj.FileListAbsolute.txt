@@ -1,0 +1,8 @@
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\WindowConfiguration.exe.config
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\WindowConfiguration.exe
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\WindowConfiguration.pdb
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.csprojResolveAssemblyReference.cache
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.Properties.Resources.resources
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.csproj.GenerateResource.Cache
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.exe
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.pdb
