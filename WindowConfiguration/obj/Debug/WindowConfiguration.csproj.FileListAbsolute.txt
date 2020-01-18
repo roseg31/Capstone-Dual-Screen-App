@@ -6,3 +6,8 @@ C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj
 C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.csproj.GenerateResource.Cache
 C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.exe
 C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\obj\Debug\WindowConfiguration.pdb
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\WindowDB.db
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\Dapper.dll
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\System.Data.SQLite.dll
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\Dapper.xml
+C:\Users\Sachin\Desktop\Capstone\VSS\WindowConfiguration\WindowConfiguration\bin\Debug\System.Data.SQLite.xml
