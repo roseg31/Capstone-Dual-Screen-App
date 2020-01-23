@@ -61,6 +61,8 @@ namespace WindowConfiguration
                 Console.WriteLine("Type: " + screen.GetType().ToString());
                 Console.WriteLine("Working Area: " + screen.WorkingArea.ToString());
                 Console.WriteLine("Primary Screen: " + screen.Primary.ToString());
+                Console.WriteLine("\n");
+
             }
             Console.WriteLine("\n");
 
@@ -70,6 +72,17 @@ namespace WindowConfiguration
             var count = 0;
             RECT rect = new RECT();
             IntPtr hWnd;
+
+            //Export vars and create export directory
+            string OriginFileName = "WindowDB.db";
+            string exportfilename = "CopyWindowDB.db"; //We should ask the user what they want to call this
+            string sourcepath = @".\";
+            string destpath = @".\exportDB"; //We should ask the user where they want to save the exported file
+            string sourceFile = System.IO.Path.Combine(sourcepath, OriginFileName);
+            string destFile = System.IO.Path.Combine(destpath, exportfilename);
+            System.IO.Directory.CreateDirectory(destpath);
+
+
 
             // Here is how I am querying the database to get all the tuples. NOTE: will be empty initially until something is inserted
             List<WindowInfo> window_lst = new List<WindowInfo>();
@@ -124,7 +137,15 @@ namespace WindowConfiguration
 
 
                     // Uncomment the line below to move window handlers. NOTE: this only works for windows that are not minimized as far as I can tell.
-                    // SetWindowPos(hWnd, 0, 0, 0, 500, 500, 0);
+                    /*if(proc.ProcessName != "devenv")
+                    {
+                        SetWindowPos(hWnd, 0, -7, 1227, 2208, 642, 0);
+                    }*/
+
+                    //Export the DB to the exportDB folder in the bin folder
+                    //System.IO.File.Copy(sourceFile, destFile, true);
+
+
                 }
             }
             Application.EnableVisualStyles();
