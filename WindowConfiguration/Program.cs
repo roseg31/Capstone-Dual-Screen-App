@@ -74,33 +74,37 @@ namespace WindowConfiguration
             IntPtr hWnd;
 
             //Export vars and create export directory
-            string OriginFileName = "WindowDB.db";
-            string exportfilename = "CopyWindowDB.db"; //We should ask the user what they want to call this
-            string sourcepath = @".\";
-            string destpath = @".\exportDB"; //We should ask the user where they want to save the exported file
-            string sourceFile = System.IO.Path.Combine(sourcepath, OriginFileName);
-            string destFile = System.IO.Path.Combine(destpath, exportfilename);
-            System.IO.Directory.CreateDirectory(destpath);
+            string ExpOriginFileName = "WindowDB.db";
+            string ExpFileName = "CopyWindowDB.db"; //We should ask the user what they want to call this
+            string ExpSourcePath = @".\";
+            string ExpDestPath = @".\exportDB"; //We should ask the user where they want to save the exported file
+            string ExpSourceFile = System.IO.Path.Combine(ExpSourcePath, ExpOriginFileName);
+            string ExpDestFile = System.IO.Path.Combine(ExpDestPath, ExpFileName);
+            System.IO.Directory.CreateDirectory(ExpDestPath);
+
+            //Import vars
+            string ImpSourcePath = ""; // This will be from user input
+            string ImpDestPath = @".\importDB";
 
 
+            // Insert a new window configuration into the DB (essentially create a new table with name x)
+            // SqLiteDataAccess.CreateWindowTable("test");
 
-            // Here is how I am querying the database to get all the tuples. NOTE: will be empty initially until something is inserted
-            List<WindowInfo> window_lst = new List<WindowInfo>();
-            window_lst = SqLiteDataAccess.LoadWindow();
-            Console.WriteLine("\nFROM DATABASE\n");
-            foreach(var window in window_lst)
+            // Decide the name of the window config to add a certain window to and load windows from
+            string win_config_name = "test";
+            string load_win_config_name = "test";
+
+            // Query all the tables from the DB b/c each table indicates a the name of the window configuration
+            List<string> window_config_names = new List<string>();
+            window_config_names = SqLiteDataAccess.LoadTable();
+            Console.WriteLine("Display Window Config Names\n");
+            foreach(var win_name in window_config_names)
             {
-                Console.WriteLine("DB Process ID: " + window.Process_ID);
-                Console.WriteLine("DB Process Name: " + window.Process_Name);
-                Console.WriteLine("DB Process Title: " + window.Process_Title);
-                Console.WriteLine("DB Left: " + window.Left);
-                Console.WriteLine("DB Right: " + window.Right);
-                Console.WriteLine("DB Top: " + window.Top);
-                Console.WriteLine("DB Bottom: " + window.Bottom);
-                Console.WriteLine("DB Width: " + window.Width);
-                Console.WriteLine("DB Height: " + window.Height + "\n");
+                if(win_name != "sqlite_sequence")
+                {
+                    Console.WriteLine("Window Configuration Name: " + win_name);
+                }
             }
-
 
             // Loop through all the currently running processes and get some diagnostic information for each window. You can also insert into the DB and move the window (uncomment last few statements)
             foreach (var proc in processes)
@@ -133,7 +137,7 @@ namespace WindowConfiguration
                     window.Process_ID = proc.Id;
 
                     // Uncomment the line below to insert all window handlers opened into the DB
-                    //SqLiteDataAccess.SaveWindow(window);
+                    //SqLiteDataAccess.SaveWindow(window, win_config_name);
 
 
                     // Uncomment the line below to move window handlers. NOTE: this only works for windows that are not minimized as far as I can tell.
@@ -143,11 +147,29 @@ namespace WindowConfiguration
                     }*/
 
                     //Export the DB to the exportDB folder in the bin folder
-                    //System.IO.File.Copy(sourceFile, destFile, true);
+                    //System.IO.File.Copy(ExpSourceFile, ExpDestFile, true);
 
 
                 }
             }
+
+            // Here is how I am querying the database to get all the tuples. NOTE: will be empty initially until something is inserted
+            List<WindowInfo> window_lst = new List<WindowInfo>();
+            window_lst = SqLiteDataAccess.LoadWindow(load_win_config_name);
+            Console.WriteLine("\nFROM DATABASE\n");
+            foreach (var window in window_lst)
+            {
+                Console.WriteLine("DB Process ID: " + window.Process_ID);
+                Console.WriteLine("DB Process Name: " + window.Process_Name);
+                Console.WriteLine("DB Process Title: " + window.Process_Title);
+                Console.WriteLine("DB Left: " + window.Left);
+                Console.WriteLine("DB Right: " + window.Right);
+                Console.WriteLine("DB Top: " + window.Top);
+                Console.WriteLine("DB Bottom: " + window.Bottom);
+                Console.WriteLine("DB Width: " + window.Width);
+                Console.WriteLine("DB Height: " + window.Height + "\n");
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

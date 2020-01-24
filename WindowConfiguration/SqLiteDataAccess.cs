@@ -17,18 +17,55 @@ namespace WindowConfiguration
     {
 
         // Query the database and return all tuples
-        public static List<WindowInfo> LoadWindow()
+        public static List<WindowInfo> LoadWindow(string load_win_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<WindowInfo>("select * from WindowHandler", new DynamicParameters());
+                string query_window_config = "select * from " + load_win_config_name;
+                var output = cnn.Query<WindowInfo>(query_window_config, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        // Query the database for the table names, each table will be the name of the custome window configuration
+        public static List<string> LoadTable()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<string>("SELECT name FROM sqlite_master where type='table'", new DynamicParameters());
                 return output.ToList();
             }
         }
 
 
+
+        // Create a table for a window configuration name defined by the user
+        public static void CreateWindowTable(string window_config_name)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                window_config_name = "'" + window_config_name + "'";
+                string create_table =
+                "CREATE TABLE" + window_config_name +
+                "('ID'    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
+                "'Process_ID'   INTEGER," +
+                "'Process_Title' TEXT," +
+                "'Process_Name'  TEXT NOT NULL," +
+                "'Left'  INTEGER," +
+                "'Right' INTEGER," +
+                "'Top'  INTEGER," +
+                "'Bottom'    INTEGER," +
+                "'Width' INTEGER," +
+                "'Height'    INTEGER)";
+
+                cnn.Execute(create_table);
+            }
+
+        }
+
+
         // Insert window handler information into the DB
-        public static void SaveWindow(WindowInfo window)
+        public static void SaveWindow(WindowInfo window, string window_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -42,8 +79,7 @@ namespace WindowConfiguration
                 int width = window.Width;
                 int height = window.Height;
 
-                string Sql_Insert = "insert into WindowHandler (Process_ID, Process_Title, Process_Name, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
-                //cnn.Execute("insert into WindowHandler (Process_Name, Left, Right, Top, Bottom, Width, Height) values (@Process_Name, @Left, @Right, @Top, @Bottom, @Width, @Height)", window);
+                string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Process_Name, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
                 cnn.Execute(Sql_Insert, window);
             }
         }
