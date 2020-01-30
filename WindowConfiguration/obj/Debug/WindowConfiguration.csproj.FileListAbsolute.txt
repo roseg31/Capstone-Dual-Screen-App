@@ -26,3 +26,4 @@ C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.csproj.CopyComplete
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.exe
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.pdb
+C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.windowconfig.resources

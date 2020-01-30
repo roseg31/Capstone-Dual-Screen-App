@@ -154,7 +154,7 @@ namespace WindowConfiguration
             }
 
             // Here is how I am querying the database to get all the tuples. NOTE: will be empty initially until something is inserted
-            List<WindowInfo> window_lst = new List<WindowInfo>();
+            /*List<WindowInfo> window_lst = new List<WindowInfo>();
             window_lst = SqLiteDataAccess.LoadWindow(load_win_config_name);
             Console.WriteLine("\nFROM DATABASE\n");
             foreach (var window in window_lst)
@@ -168,11 +168,11 @@ namespace WindowConfiguration
                 Console.WriteLine("DB Bottom: " + window.Bottom);
                 Console.WriteLine("DB Width: " + window.Width);
                 Console.WriteLine("DB Height: " + window.Height + "\n");
-            }
+            }*/
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new windowconfig());
         }
     }
 }

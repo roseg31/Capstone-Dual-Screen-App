@@ -17,12 +17,12 @@ namespace WindowConfiguration
     {
 
         // Query the database and return all tuples
-        public static List<WindowInfo> LoadWindow(string load_win_config_name)
+        public static List<windowconfig.WindowInfo> LoadWindow(string load_win_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 string query_window_config = "select * from " + load_win_config_name;
-                var output = cnn.Query<WindowInfo>(query_window_config, new DynamicParameters());
+                var output = cnn.Query<windowconfig.WindowInfo>(query_window_config, new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -65,7 +65,7 @@ namespace WindowConfiguration
 
 
         // Insert window handler information into the DB
-        public static void SaveWindow(WindowInfo window, string window_config_name)
+        public static void SaveWindow(windowconfig.WindowInfo window, string window_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
