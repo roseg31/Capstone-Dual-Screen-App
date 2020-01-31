@@ -17,12 +17,23 @@ namespace WindowConfiguration
     {
 
         // Query the database and return all tuples
-        public static List<windowconfig.WindowInfo> LoadWindow(string load_win_config_name)
+        public static List<WindowInfo> LoadWindow(string load_win_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 string query_window_config = "select * from " + load_win_config_name;
-                var output = cnn.Query<windowconfig.WindowInfo>(query_window_config, new DynamicParameters());
+                var output = cnn.Query<WindowInfo>(query_window_config, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        // Query the database for custom configuration information
+        public static List<windowconfig.Config_Info> LoadConfigInfo()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string query_config_info = "select * from Table_Description;";
+                var output = cnn.Query<windowconfig.Config_Info>(query_config_info, new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -37,10 +48,35 @@ namespace WindowConfiguration
             }
         }
 
+        // Remove a configuration and its associated data from the database
+        public static void RemoveConfigData(string config_name)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                config_name = "'" + config_name + "'";
+                var output = cnn.Query<string>("DELETE FROM Table_Description where Name=" + config_name, new DynamicParameters());
+                output = cnn.Query<string>("DROP TABLE " + config_name, new DynamicParameters());
+            }
+        }
+
+        // Add information about a custom config to the config_description table
+        public static void AddConfigInfo(new_config.Config_Info cfg_info)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                string name = "'" + cfg_info.Name + "'";
+                string description = "'" + cfg_info.Description + "'";
+                int num_apps = cfg_info.Num_apps;
+
+                string Sql_Insert = "insert into Table_Description (Name, Num_apps, Description) values (" + name + ", " + num_apps + ", " + description + ")";
+                cnn.Execute(Sql_Insert, cfg_info);
+            }
+        }
+
 
 
         // Create a table for a window configuration name defined by the user
-        public static void CreateWindowTable(string window_config_name)
+        public static void CreateConfigTable(string window_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -65,7 +101,7 @@ namespace WindowConfiguration
 
 
         // Insert window handler information into the DB
-        public static void SaveWindow(windowconfig.WindowInfo window, string window_config_name)
+        public static void SaveWindow(new_config.WindowInfo window, string window_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {

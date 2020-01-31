@@ -27,3 +27,7 @@ C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.exe
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.pdb
 C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.windowconfig.resources
+C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.homepage.resources
+C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.export.resources
+C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.import.resources
+C:\Users\Capstone\Desktop\Capstone\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.new_config.resources
