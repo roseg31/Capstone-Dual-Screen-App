@@ -17,12 +17,12 @@ namespace WindowConfiguration
     {
 
         // Query the database and return all tuples
-        public static List<WindowInfo> LoadWindow(string load_win_config_name)
+        public static List<windowconfig.WindowInfo> LoadWindow(string load_win_config_name)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 string query_window_config = "select * from " + load_win_config_name;
-                var output = cnn.Query<WindowInfo>(query_window_config, new DynamicParameters());
+                var output = cnn.Query<windowconfig.WindowInfo>(query_window_config, new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -87,6 +87,7 @@ namespace WindowConfiguration
                 "'Process_ID'   INTEGER," +
                 "'Process_Title' TEXT," +
                 "'Process_Name'  TEXT NOT NULL," +
+                "'Exe_Path' TEXT," +
                 "'Left'  INTEGER," +
                 "'Right' INTEGER," +
                 "'Top'  INTEGER," +
@@ -108,6 +109,7 @@ namespace WindowConfiguration
                 int process_id = window.Process_ID;
                 string process_title = "'" + window.Process_Title + "'";
                 string process_name = "'" + window.Process_Name + "'";
+                string exe_path = "'" + window.Exe_Path + "'";
                 int left = window.Left;
                 int right = window.Right;
                 int top = window.Top;
@@ -115,7 +117,7 @@ namespace WindowConfiguration
                 int width = window.Width;
                 int height = window.Height;
 
-                string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Process_Name, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
+                string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Process_Name, Exe_Path, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+","+exe_path+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
                 cnn.Execute(Sql_Insert, window);
             }
         }

@@ -41,6 +41,7 @@
             this.preview_cfg_prim = new System.Windows.Forms.PictureBox();
             this.preview_cfg_companion = new System.Windows.Forms.PictureBox();
             this.preview_label = new System.Windows.Forms.Label();
+            this.configure_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
@@ -162,11 +163,22 @@
             this.preview_label.TabIndex = 26;
             this.preview_label.Text = "Preview";
             // 
+            // configure_btn
+            // 
+            this.configure_btn.Location = new System.Drawing.Point(2050, 922);
+            this.configure_btn.Name = "configure_btn";
+            this.configure_btn.Size = new System.Drawing.Size(338, 73);
+            this.configure_btn.TabIndex = 27;
+            this.configure_btn.Text = "Configure";
+            this.configure_btn.UseVisualStyleBackColor = true;
+            this.configure_btn.Click += new System.EventHandler(this.configure_btn_Click);
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2665, 1039);
+            this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.preview_label);
             this.Controls.Add(this.preview_cfg_companion);
             this.Controls.Add(this.preview_cfg_prim);
@@ -202,6 +214,7 @@
         private System.Windows.Forms.PictureBox preview_cfg_prim;
         private System.Windows.Forms.PictureBox preview_cfg_companion;
         private System.Windows.Forms.Label preview_label;
+        private System.Windows.Forms.Button configure_btn;
     }
 }
 

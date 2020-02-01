@@ -18,6 +18,7 @@ namespace WindowConfiguration
         {
             public string Process_Name;
             public string Process_Title;
+            public string Exe_Path;
             public int Process_ID;
             public int Left;
             public int Right;

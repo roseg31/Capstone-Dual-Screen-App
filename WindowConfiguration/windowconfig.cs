@@ -45,6 +45,20 @@ namespace WindowConfiguration
             public string Description;
         }
 
+        public struct WindowInfo
+        {
+            public string Process_Name;
+            public string Process_Title;
+            public string Exe_Path;
+            public int Process_ID;
+            public int Left;
+            public int Right;
+            public int Top;
+            public int Bottom;
+            public int Width;
+            public int Height;
+        }
+
         private export export_page = new export();
         private import import_page = new import();
         private new_config new_config_page = new new_config();
@@ -145,6 +159,7 @@ namespace WindowConfiguration
 
                     if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
                     {
+                        Console.WriteLine(proc.MainModule.FileName);
                         string topleftcoord = "(" + rect.Left + "," + rect.Top + "), ";
                         string bottomrightcoord = "(" + rect.Right + "," + rect.Bottom + ")";
                         string location = topleftcoord + bottomrightcoord;
@@ -165,6 +180,7 @@ namespace WindowConfiguration
                         window.Height = Math.Abs((rect.Top) - (rect.Bottom));
                         window.Process_Title = proc.MainWindowTitle;
                         window.Process_ID = proc.Id;
+                        window.Exe_Path = proc.MainModule.FileName;
                         new_config_page.win_list.Add(window);
 
                         // Uncomment the line below to move window handlers. NOTE: this only works for windows that are not minimized as far as I can tell.
@@ -246,6 +262,41 @@ namespace WindowConfiguration
 
 
             }
+        }
+
+        private void configure_btn_Click(object sender, EventArgs e)
+        {
+            if (cfg_display.SelectedItems.Count > 0)
+            {
+                List<windowconfig.WindowInfo> windows = new List<windowconfig.WindowInfo>();
+                windows = SqLiteDataAccess.LoadWindow(cfg_display.SelectedItems[0].Text);
+                var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
+                RECT rect = new RECT();
+                IntPtr hWnd;
+                foreach (var window in windows)
+                {
+                    foreach (var proc in processes)
+                    {
+                        if (!string.IsNullOrEmpty(proc.MainWindowTitle))
+                        {
+                            // Print out some diagnostic information
+                            hWnd = FindWindow(null, proc.MainWindowTitle);
+                            GetWindowRect(hWnd, out rect);
+
+                            if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
+                            {
+                                if(window.Process_Name == proc.ProcessName)
+                                {
+                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
         }
     }
 }
