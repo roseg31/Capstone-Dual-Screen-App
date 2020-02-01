@@ -92,6 +92,7 @@
             this.exp_file_label.Size = new System.Drawing.Size(241, 32);
             this.exp_file_label.TabIndex = 5;
             this.exp_file_label.Text = "Export File Name:";
+            this.exp_file_label.Click += new System.EventHandler(this.exp_file_label_Click);
             // 
             // exp_filename
             // 

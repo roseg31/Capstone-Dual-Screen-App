@@ -200,11 +200,14 @@ namespace WindowConfiguration
                 SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
                 preview_cfg_prim.Image = null;
                 preview_cfg_companion.Image = null;
-                System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
+                if(System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text)){
+                    System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
+                }
                 display_window_config();
             }
 
         }
+
 
         private void cfg_display_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -218,14 +221,28 @@ namespace WindowConfiguration
                 string secondary_image_file = "second_" + config_name + ".png";
                 string primary_image_path = System.IO.Path.Combine(image_folder, primary_image_file);
                 string secondary_image_path = System.IO.Path.Combine(image_folder, secondary_image_file);
-                using (var bmpTemp = new Bitmap(primary_image_path))
+                string no_preview_image_path = @".\ConfigScreens\no-preview.jpg";
+
+                if (System.IO.File.Exists(primary_image_path) && System.IO.File.Exists(secondary_image_path))
                 {
-                    preview_cfg_prim.Image = new Bitmap(bmpTemp);
+                    using (var bmpTemp = new Bitmap(primary_image_path))
+                    {
+                        preview_cfg_prim.Image = new Bitmap(bmpTemp);
+                    }
+                    using (var bmpTemp = new Bitmap(secondary_image_path))
+                    {
+                        preview_cfg_companion.Image = new Bitmap(bmpTemp);
+                    }
                 }
-                using (var bmpTemp = new Bitmap(secondary_image_path))
+                else
                 {
-                    preview_cfg_companion.Image = new Bitmap(bmpTemp);
+                    using (var bmpTemp = new Bitmap(no_preview_image_path))
+                    {
+                        preview_cfg_prim.Image = new Bitmap(bmpTemp);
+                        preview_cfg_companion.Image = new Bitmap(bmpTemp);
+                    }
                 }
+
 
 
             }

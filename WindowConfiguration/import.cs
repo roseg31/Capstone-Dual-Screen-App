@@ -28,6 +28,24 @@ namespace WindowConfiguration
 
         }
 
+        private static void CloneDirectory(string root, string dest)
+        {
+            foreach (var directory in System.IO.Directory.GetDirectories(root))
+            {
+                string dirName = System.IO.Path.GetFileName(directory);
+                if (!System.IO.Directory.Exists(System.IO.Path.Combine(dest, dirName)))
+                {
+                    System.IO.Directory.CreateDirectory(System.IO.Path.Combine(dest, dirName));
+                }
+                CloneDirectory(directory, System.IO.Path.Combine(dest, dirName));
+            }
+
+            foreach (var file in System.IO.Directory.GetFiles(root))
+            {
+                System.IO.File.Copy(file, System.IO.Path.Combine(dest, System.IO.Path.GetFileName(file)), true);
+            }
+        }
+
         private void imp_ok_btn_Click(object sender, EventArgs e)
         {
             if(FilePath.Text != "")
@@ -36,8 +54,9 @@ namespace WindowConfiguration
                 string ImpDestPath = @".\";
                 string ImpDestFile = System.IO.Path.Combine(ImpDestPath, ImpDestFileName);
                 System.IO.File.Copy(FilePath.Text, ImpDestFile, true);
+                string db_location = System.IO.Path.GetDirectoryName(FilePath.Text);
+                CloneDirectory(db_location + @"\ConfigScreens", @".\ConfigScreens");
                 FilePath.Clear();
-
                 this.Close();
             }
 
