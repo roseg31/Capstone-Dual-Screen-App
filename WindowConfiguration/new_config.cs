@@ -36,6 +36,8 @@ namespace WindowConfiguration
 
         public List<WindowInfo> win_list = new List<WindowInfo>();
 
+        public Form RefToConfig { get; set; }
+
         public new_config()
         {
             InitializeComponent();
@@ -75,6 +77,7 @@ namespace WindowConfiguration
             cfg_name_box.Clear();
             cfg_desc_box.Clear();
             this.Close();
+            RefToConfig.Show();
         }
 
         private void save_cfg_btn_Click(object sender, EventArgs e)
@@ -103,7 +106,9 @@ namespace WindowConfiguration
             }
             cfg_name_box.Clear();
             cfg_desc_box.Clear();
+            proc_list_view.Items.Clear();
             this.Close();
+            RefToConfig.Show();
         }
     }
 }

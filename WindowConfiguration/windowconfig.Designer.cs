@@ -38,6 +38,11 @@
             this.imp_btn = new System.Windows.Forms.Button();
             this.exp_btn = new System.Windows.Forms.Button();
             this.del_btn = new System.Windows.Forms.Button();
+            this.preview_cfg_prim = new System.Windows.Forms.PictureBox();
+            this.preview_cfg_companion = new System.Windows.Forms.PictureBox();
+            this.preview_label = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
             // 
             // back_btn
@@ -65,6 +70,7 @@
             this.cfg_display.TabIndex = 18;
             this.cfg_display.UseCompatibleStateImageBehavior = false;
             this.cfg_display.View = System.Windows.Forms.View.Details;
+            this.cfg_display.SelectedIndexChanged += new System.EventHandler(this.cfg_display_SelectedIndexChanged);
             // 
             // nameheader
             // 
@@ -131,11 +137,39 @@
             this.del_btn.UseVisualStyleBackColor = true;
             this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
             // 
+            // preview_cfg_prim
+            // 
+            this.preview_cfg_prim.Location = new System.Drawing.Point(1782, 104);
+            this.preview_cfg_prim.Name = "preview_cfg_prim";
+            this.preview_cfg_prim.Size = new System.Drawing.Size(839, 486);
+            this.preview_cfg_prim.TabIndex = 24;
+            this.preview_cfg_prim.TabStop = false;
+            // 
+            // preview_cfg_companion
+            // 
+            this.preview_cfg_companion.Location = new System.Drawing.Point(1782, 625);
+            this.preview_cfg_companion.Name = "preview_cfg_companion";
+            this.preview_cfg_companion.Size = new System.Drawing.Size(839, 237);
+            this.preview_cfg_companion.TabIndex = 25;
+            this.preview_cfg_companion.TabStop = false;
+            // 
+            // preview_label
+            // 
+            this.preview_label.AutoSize = true;
+            this.preview_label.Location = new System.Drawing.Point(2145, 46);
+            this.preview_label.Name = "preview_label";
+            this.preview_label.Size = new System.Drawing.Size(116, 32);
+            this.preview_label.TabIndex = 26;
+            this.preview_label.Text = "Preview";
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1769, 1039);
+            this.ClientSize = new System.Drawing.Size(2665, 1039);
+            this.Controls.Add(this.preview_label);
+            this.Controls.Add(this.preview_cfg_companion);
+            this.Controls.Add(this.preview_cfg_prim);
             this.Controls.Add(this.del_btn);
             this.Controls.Add(this.exp_btn);
             this.Controls.Add(this.imp_btn);
@@ -147,6 +181,8 @@
             this.Name = "windowconfig";
             this.Text = "DuoTech";
             this.Load += new System.EventHandler(this.windowconfig_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,6 +199,9 @@
         private System.Windows.Forms.Button imp_btn;
         private System.Windows.Forms.Button exp_btn;
         private System.Windows.Forms.Button del_btn;
+        private System.Windows.Forms.PictureBox preview_cfg_prim;
+        private System.Windows.Forms.PictureBox preview_cfg_companion;
+        private System.Windows.Forms.Label preview_label;
     }
 }
 

@@ -105,6 +105,8 @@ namespace WindowConfiguration
         private void capture_screens()
         {
             int screen_count = 0;
+            new_config_page.RefToConfig = this;
+            this.Hide();
             foreach (var screen in Screen.AllScreens)
             {
                 Bitmap screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -196,9 +198,37 @@ namespace WindowConfiguration
             if(cfg_display.SelectedItems.Count > 0)
             {
                 SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
+                preview_cfg_prim.Image = null;
+                preview_cfg_companion.Image = null;
+                System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
                 display_window_config();
             }
 
+        }
+
+        private void cfg_display_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cfg_display.SelectedItems.Count > 0)
+            {
+                this.preview_cfg_prim.SizeMode = PictureBoxSizeMode.Zoom;
+                this.preview_cfg_companion.SizeMode = PictureBoxSizeMode.Zoom;
+                string config_name = cfg_display.SelectedItems[0].Text;
+                string image_folder = @".\ConfigScreens\" + config_name;
+                string primary_image_file = "main_" + config_name + ".png";
+                string secondary_image_file = "second_" + config_name + ".png";
+                string primary_image_path = System.IO.Path.Combine(image_folder, primary_image_file);
+                string secondary_image_path = System.IO.Path.Combine(image_folder, secondary_image_file);
+                using (var bmpTemp = new Bitmap(primary_image_path))
+                {
+                    preview_cfg_prim.Image = new Bitmap(bmpTemp);
+                }
+                using (var bmpTemp = new Bitmap(secondary_image_path))
+                {
+                    preview_cfg_companion.Image = new Bitmap(bmpTemp);
+                }
+
+
+            }
         }
     }
 }
