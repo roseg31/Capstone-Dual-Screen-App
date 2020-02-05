@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(new_config));
             this.cfg_name_label = new System.Windows.Forms.Label();
             this.cfg_name_box = new System.Windows.Forms.TextBox();
             this.cfg_desc_label = new System.Windows.Forms.Label();
@@ -38,10 +39,11 @@
             this.save_cfg_btn = new System.Windows.Forms.Button();
             this.cncl_cfg_btn = new System.Windows.Forms.Button();
             this.proc_list_view = new System.Windows.Forms.ListView();
-            this.process_list_label = new System.Windows.Forms.Label();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LocationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sizeHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.process_list_label = new System.Windows.Forms.Label();
+            this.new_cfg_err_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PrimaryScreenDisp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CompanionScreenDisp)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +83,7 @@
             // 
             // PrimaryScreenDisp
             // 
+            this.PrimaryScreenDisp.InitialImage = ((System.Drawing.Image)(resources.GetObject("PrimaryScreenDisp.InitialImage")));
             this.PrimaryScreenDisp.Location = new System.Drawing.Point(972, 70);
             this.PrimaryScreenDisp.Name = "PrimaryScreenDisp";
             this.PrimaryScreenDisp.Size = new System.Drawing.Size(883, 533);
@@ -98,9 +101,10 @@
             // 
             // CompanionScreenDisp
             // 
-            this.CompanionScreenDisp.Location = new System.Drawing.Point(972, 636);
+            this.CompanionScreenDisp.InitialImage = ((System.Drawing.Image)(resources.GetObject("CompanionScreenDisp.InitialImage")));
+            this.CompanionScreenDisp.Location = new System.Drawing.Point(972, 609);
             this.CompanionScreenDisp.Name = "CompanionScreenDisp";
-            this.CompanionScreenDisp.Size = new System.Drawing.Size(883, 330);
+            this.CompanionScreenDisp.Size = new System.Drawing.Size(883, 278);
             this.CompanionScreenDisp.TabIndex = 6;
             this.CompanionScreenDisp.TabStop = false;
             // 
@@ -140,16 +144,6 @@
             this.proc_list_view.UseCompatibleStateImageBehavior = false;
             this.proc_list_view.View = System.Windows.Forms.View.Details;
             // 
-            // process_list_label
-            // 
-            this.process_list_label.AutoSize = true;
-            this.process_list_label.Location = new System.Drawing.Point(35, 739);
-            this.process_list_label.Name = "process_list_label";
-            this.process_list_label.Size = new System.Drawing.Size(216, 32);
-            this.process_list_label.TabIndex = 10;
-            this.process_list_label.Text = "Process Listing:";
-            this.process_list_label.Click += new System.EventHandler(this.label1_Click);
-            // 
             // nameHeader
             // 
             this.nameHeader.Text = "Name";
@@ -165,11 +159,33 @@
             this.sizeHeader.Text = "Size";
             this.sizeHeader.Width = 160;
             // 
+            // process_list_label
+            // 
+            this.process_list_label.AutoSize = true;
+            this.process_list_label.Location = new System.Drawing.Point(35, 739);
+            this.process_list_label.Name = "process_list_label";
+            this.process_list_label.Size = new System.Drawing.Size(216, 32);
+            this.process_list_label.TabIndex = 10;
+            this.process_list_label.Text = "Process Listing:";
+            this.process_list_label.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // new_cfg_err_label
+            // 
+            this.new_cfg_err_label.AutoSize = true;
+            this.new_cfg_err_label.ForeColor = System.Drawing.Color.Red;
+            this.new_cfg_err_label.Location = new System.Drawing.Point(1226, 918);
+            this.new_cfg_err_label.Name = "new_cfg_err_label";
+            this.new_cfg_err_label.Size = new System.Drawing.Size(374, 32);
+            this.new_cfg_err_label.TabIndex = 11;
+            this.new_cfg_err_label.Text = "NEW_CFG_ERROR_LABEL";
+            this.new_cfg_err_label.Visible = false;
+            // 
             // new_config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1918, 1072);
+            this.Controls.Add(this.new_cfg_err_label);
             this.Controls.Add(this.process_list_label);
             this.Controls.Add(this.proc_list_view);
             this.Controls.Add(this.cncl_cfg_btn);
@@ -206,5 +222,6 @@
         private System.Windows.Forms.ColumnHeader nameHeader;
         private System.Windows.Forms.ColumnHeader LocationHeader;
         private System.Windows.Forms.ColumnHeader sizeHeader;
+        private System.Windows.Forms.Label new_cfg_err_label;
     }
 }

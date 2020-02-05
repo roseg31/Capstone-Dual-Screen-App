@@ -49,6 +49,9 @@ namespace WindowConfiguration
 
         private void cancel_exp_btn_Click(object sender, EventArgs e)
         {
+            fol_path.Clear();
+            exp_filename.Clear();
+            exp_err_label.Visible = false;
             this.Hide();
         }
 
@@ -66,17 +69,48 @@ namespace WindowConfiguration
             {
                 if (exp_filename.Text != "")
                 {
-                    ExpFileName = exp_filename.Text + ".db";
-                    System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text);
-                    System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text+ @"\ConfigScreens");
-                    CloneDirectory(@".\ConfigScreens", fol_path.Text + @"\" + exp_filename.Text + @"\ConfigScreens");
-                    ExpDestFile = System.IO.Path.Combine(fol_path.Text + @"\" + exp_filename.Text, ExpFileName);
-                    System.IO.File.Copy(ExpSourceFile, ExpDestFile, true);
-                    fol_path.Clear();
-                    exp_filename.Clear();
-                    this.Hide();
-                }
+                    if (!exp_filename.Text.Contains(".db"))
+                    {
+                        if (System.IO.Directory.Exists(fol_path.Text))
+                        {
+                            ExpFileName = exp_filename.Text + ".db";
+                            System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text);
+                            System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text + @"\ConfigScreens");
+                            if (System.IO.Directory.Exists(@".\ConfigScreens"))
+                            {
+                                CloneDirectory(@".\ConfigScreens", fol_path.Text + @"\" + exp_filename.Text + @"\ConfigScreens");
+                            }
+                            ExpDestFile = System.IO.Path.Combine(fol_path.Text + @"\" + exp_filename.Text, ExpFileName);
+                            System.IO.File.Copy(ExpSourceFile, ExpDestFile, true);
+                            exp_err_label.Visible = false;
+                            fol_path.Clear();
+                            exp_filename.Clear();
+                            this.Hide();
+                        }
+                        else
+                        {
+                            exp_err_label.Text = "Folder Path doesn't Exist!";
+                            exp_err_label.Visible = true;
+                        }
 
+                    }
+                    else
+                    {
+                        exp_err_label.Text = "Remove .db from Export File Name!";
+                        exp_err_label.Visible = true;
+                    }
+
+                }
+                else
+                {
+                    exp_err_label.Text = "Missing Export File Name!";
+                    exp_err_label.Visible = true;
+                }
+            }
+            else
+            {
+                exp_err_label.Text = "Missing Folder Path!";
+                exp_err_label.Visible = true;
             }
 
         }

@@ -53,17 +53,35 @@ namespace WindowConfiguration
                 string ImpDestFileName = "WindowDB.db";
                 string ImpDestPath = @".\";
                 string ImpDestFile = System.IO.Path.Combine(ImpDestPath, ImpDestFileName);
-                System.IO.File.Copy(FilePath.Text, ImpDestFile, true);
-                string db_location = System.IO.Path.GetDirectoryName(FilePath.Text);
-                CloneDirectory(db_location + @"\ConfigScreens", @".\ConfigScreens");
-                FilePath.Clear();
-                this.Close();
+                if(System.IO.Path.GetFileName(FilePath.Text).Contains(".db")) {
+                    System.IO.File.Copy(FilePath.Text, ImpDestFile, true);
+                    string db_location = System.IO.Path.GetDirectoryName(FilePath.Text);
+                    if (System.IO.Directory.Exists(db_location + @"\ConfigScreens") && System.IO.Directory.Exists(@".\ConfigScreens"))
+                    {
+                        CloneDirectory(db_location + @"\ConfigScreens", @".\ConfigScreens");
+                    }
+                    imp_err_label.Visible = false;
+                    FilePath.Clear();
+                    this.Close();
+                }
+                else
+                {
+                    imp_err_label.Text = "Import file needs to be a .db!";
+                    imp_err_label.Visible = true;
+                }
+            }
+            else
+            {
+                imp_err_label.Text = "Missing File Path!";
+                imp_err_label.Visible = true;
             }
 
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
+            FilePath.Clear();
+            imp_err_label.Visible = false;
             this.Close();
         }
 

@@ -21,9 +21,25 @@ namespace WindowConfiguration
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
+                if (load_win_config_name.Contains(" "))
+                {
+                    load_win_config_name = "[" + load_win_config_name + "]";
+                }
                 string query_window_config = "select * from " + load_win_config_name;
                 var output = cnn.Query<windowconfig.WindowInfo>(query_window_config, new DynamicParameters());
                 return output.ToList();
+            }
+        }
+
+        public static bool check_table_exists(string config_name)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                config_name = "'" + config_name + "'";
+                string query_config_info = "select * from Table_Description where Name=" + config_name;
+                var output = cnn.Query<string>(query_config_info, new DynamicParameters());
+                output.ToList();
+                return output.Count() != 0;
             }
         }
 
@@ -116,6 +132,11 @@ namespace WindowConfiguration
                 int bottom = window.Bottom;
                 int width = window.Width;
                 int height = window.Height;
+
+                if(window_config_name.Contains(" "))
+                {
+                    window_config_name = "[" + window_config_name + "]";
+                }
 
                 string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Process_Name, Exe_Path, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+","+exe_path+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
                 cnn.Execute(Sql_Insert, window);

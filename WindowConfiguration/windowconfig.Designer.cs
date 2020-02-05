@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(windowconfig));
             this.back_btn = new System.Windows.Forms.Button();
             this.cfg_display = new System.Windows.Forms.ListView();
             this.nameheader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,6 +43,7 @@
             this.preview_cfg_companion = new System.Windows.Forms.PictureBox();
             this.preview_label = new System.Windows.Forms.Label();
             this.configure_btn = new System.Windows.Forms.Button();
+            this.cfg_err_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
@@ -140,14 +142,17 @@
             // 
             // preview_cfg_prim
             // 
+            this.preview_cfg_prim.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_prim.InitialImage")));
             this.preview_cfg_prim.Location = new System.Drawing.Point(1782, 104);
             this.preview_cfg_prim.Name = "preview_cfg_prim";
             this.preview_cfg_prim.Size = new System.Drawing.Size(839, 486);
             this.preview_cfg_prim.TabIndex = 24;
             this.preview_cfg_prim.TabStop = false;
+            this.preview_cfg_prim.Click += new System.EventHandler(this.preview_cfg_prim_Click);
             // 
             // preview_cfg_companion
             // 
+            this.preview_cfg_companion.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_companion.InitialImage")));
             this.preview_cfg_companion.Location = new System.Drawing.Point(1782, 625);
             this.preview_cfg_companion.Name = "preview_cfg_companion";
             this.preview_cfg_companion.Size = new System.Drawing.Size(839, 237);
@@ -173,11 +178,23 @@
             this.configure_btn.UseVisualStyleBackColor = true;
             this.configure_btn.Click += new System.EventHandler(this.configure_btn_Click);
             // 
+            // cfg_err_label
+            // 
+            this.cfg_err_label.AutoSize = true;
+            this.cfg_err_label.ForeColor = System.Drawing.Color.Red;
+            this.cfg_err_label.Location = new System.Drawing.Point(536, 922);
+            this.cfg_err_label.Name = "cfg_err_label";
+            this.cfg_err_label.Size = new System.Drawing.Size(343, 32);
+            this.cfg_err_label.TabIndex = 28;
+            this.cfg_err_label.Text = "CONFIG_ERROR_LABEL";
+            this.cfg_err_label.Visible = false;
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2665, 1039);
+            this.Controls.Add(this.cfg_err_label);
             this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.preview_label);
             this.Controls.Add(this.preview_cfg_companion);
@@ -215,6 +232,7 @@
         private System.Windows.Forms.PictureBox preview_cfg_companion;
         private System.Windows.Forms.Label preview_label;
         private System.Windows.Forms.Button configure_btn;
+        private System.Windows.Forms.Label cfg_err_label;
     }
 }
 

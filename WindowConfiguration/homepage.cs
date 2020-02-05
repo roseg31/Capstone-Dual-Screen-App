@@ -25,5 +25,10 @@ namespace WindowConfiguration
             this.Visible = false;
             win_cfg_list.Show();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

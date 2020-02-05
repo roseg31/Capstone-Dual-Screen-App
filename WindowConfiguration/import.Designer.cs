@@ -33,6 +33,7 @@
             this.imp_browse_btn = new System.Windows.Forms.Button();
             this.imp_ok_btn = new System.Windows.Forms.Button();
             this.cancel_btn = new System.Windows.Forms.Button();
+            this.imp_err_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // filename_label
@@ -82,11 +83,23 @@
             this.cancel_btn.UseVisualStyleBackColor = true;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
+            // imp_err_label
+            // 
+            this.imp_err_label.AutoSize = true;
+            this.imp_err_label.ForeColor = System.Drawing.Color.Red;
+            this.imp_err_label.Location = new System.Drawing.Point(322, 301);
+            this.imp_err_label.Name = "imp_err_label";
+            this.imp_err_label.Size = new System.Drawing.Size(343, 32);
+            this.imp_err_label.TabIndex = 5;
+            this.imp_err_label.Text = "IMPORT_ERROR_LABEL";
+            this.imp_err_label.Visible = false;
+            // 
             // import
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1286, 365);
+            this.Controls.Add(this.imp_err_label);
             this.Controls.Add(this.cancel_btn);
             this.Controls.Add(this.imp_ok_btn);
             this.Controls.Add(this.imp_browse_btn);
@@ -106,5 +119,6 @@
         private System.Windows.Forms.Button imp_browse_btn;
         private System.Windows.Forms.Button imp_ok_btn;
         private System.Windows.Forms.Button cancel_btn;
+        private System.Windows.Forms.Label imp_err_label;
     }
 }

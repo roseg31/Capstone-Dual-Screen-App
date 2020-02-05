@@ -109,10 +109,7 @@ namespace WindowConfiguration
 
         public static bool IsAppWindow(IntPtr hWnd)
         {
-            int style = GetWindowLong(hWnd, -16); // GWL_STYLE
-
-            // check for WS_VISIBLE and WS_CAPTION flags
-            // (that the window is visible and has a title bar)
+            int style = GetWindowLong(hWnd, -16);
             return (style & 0x10C00000) == 0x10C00000;
         }
 
@@ -138,13 +135,15 @@ namespace WindowConfiguration
                     new_config_page.secondaryScreen = screenshot;
                 }
             }
+            this.Show();
         }
 
-        private void get_processes()
+        private int get_processes()
         {
             var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
             RECT rect = new RECT();
             IntPtr hWnd;
+            var process_count = 0;
 
             new_config_page.clear_process_list_view();
             // Loop through all the currently running processes and get some diagnostic information for each window. You can also insert into the DB and move the window (uncomment last few statements)
@@ -159,7 +158,7 @@ namespace WindowConfiguration
 
                     if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
                     {
-                        Console.WriteLine(proc.MainModule.FileName);
+                        process_count++;
                         string topleftcoord = "(" + rect.Left + "," + rect.Top + "), ";
                         string bottomrightcoord = "(" + rect.Right + "," + rect.Bottom + ")";
                         string location = topleftcoord + bottomrightcoord;
@@ -183,23 +182,29 @@ namespace WindowConfiguration
                         window.Exe_Path = proc.MainModule.FileName;
                         new_config_page.win_list.Add(window);
 
-                        // Uncomment the line below to move window handlers. NOTE: this only works for windows that are not minimized as far as I can tell.
-                        /*if(proc.ProcessName != "devenv")
-                        {
-                            SetWindowPos(hWnd, 0, -7, 1227, 2208, 642, 0);
-                        }*/
 
                     }
                 }
             }
+            return process_count;
         }
+
 
         private void new_cfg_btn_Click(object sender, EventArgs e)
         {
-            capture_screens();
-            get_processes();
-            new_config_page.ShowDialog();
-            display_window_config();
+            if (get_processes() != 0)
+            {
+                capture_screens();
+                cfg_err_label.Visible = false;
+                new_config_page.ShowDialog();
+                display_window_config();
+            }
+            else
+            {
+                cfg_err_label.Text = "No Windows to Manage!";
+                cfg_err_label.Visible = true;
+            }
+
         }
 
         private void imp_btn_Click(object sender, EventArgs e)
@@ -216,10 +221,16 @@ namespace WindowConfiguration
                 SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
                 preview_cfg_prim.Image = null;
                 preview_cfg_companion.Image = null;
-                if(System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text)){
+                cfg_err_label.Visible = false;
+                if (System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text)){
                     System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
                 }
                 display_window_config();
+            }
+            else
+            {
+                cfg_err_label.Text = "Select a Configuration to Delete!";
+                cfg_err_label.Visible = true;
             }
 
         }
@@ -273,6 +284,7 @@ namespace WindowConfiguration
                 var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
                 RECT rect = new RECT();
                 IntPtr hWnd;
+                cfg_err_label.Visible = false;
                 foreach (var window in windows)
                 {
                     foreach (var proc in processes)
@@ -296,6 +308,16 @@ namespace WindowConfiguration
 
                 }
             }
+            else
+            {
+                cfg_err_label.Text = "Select a Configuration to Configure!";
+                cfg_err_label.Visible = true;
+            }
+
+        }
+
+        private void preview_cfg_prim_Click(object sender, EventArgs e)
+        {
 
         }
     }

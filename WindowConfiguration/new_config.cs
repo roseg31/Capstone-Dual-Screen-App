@@ -75,6 +75,7 @@ namespace WindowConfiguration
 
         private void cncl_cfg_btn_Click(object sender, EventArgs e)
         {
+
             cfg_name_box.Clear();
             cfg_desc_box.Clear();
             this.Close();
@@ -85,31 +86,45 @@ namespace WindowConfiguration
         {
             if(cfg_name_box.Text != "")
             {
-                Config_Info new_cfg = new Config_Info();
-                new_cfg.Name = cfg_name_box.Text;
-                new_cfg.Description = cfg_desc_box.Text;
-                new_cfg.Num_apps = win_list.Count();
-                SqLiteDataAccess.AddConfigInfo(new_cfg);
-                SqLiteDataAccess.CreateConfigTable(new_cfg.Name);
-                foreach(var window in win_list)
+                if (!SqLiteDataAccess.check_table_exists(cfg_name_box.Text))
                 {
-                    SqLiteDataAccess.SaveWindow(window, new_cfg.Name);
+                    Config_Info new_cfg = new Config_Info();
+                    new_cfg.Name = cfg_name_box.Text;
+                    new_cfg.Description = cfg_desc_box.Text;
+                    new_cfg.Num_apps = win_list.Count();
+                    SqLiteDataAccess.AddConfigInfo(new_cfg);
+                    SqLiteDataAccess.CreateConfigTable(new_cfg.Name);
+                    foreach (var window in win_list)
+                    {
+                        SqLiteDataAccess.SaveWindow(window, new_cfg.Name);
+                    }
+
+                    string image_path = @".\ConfigScreens\" + new_cfg.Name;
+                    System.IO.Directory.CreateDirectory(image_path);
+                    string primary_path = "main_" + new_cfg.Name + ".png";
+                    string secondary_path = "second_" + new_cfg.Name + ".png";
+                    primary_path = System.IO.Path.Combine(image_path, primary_path);
+                    secondary_path = System.IO.Path.Combine(image_path, secondary_path);
+                    primaryScreen.Save(primary_path);
+                    secondaryScreen.Save(secondary_path);
+                    new_cfg_err_label.Visible = false;
+                    cfg_name_box.Clear();
+                    cfg_desc_box.Clear();
+                    proc_list_view.Items.Clear();
+                    this.Close();
                 }
-                
-                string image_path = @".\ConfigScreens\" + new_cfg.Name;
-                System.IO.Directory.CreateDirectory(image_path);
-                string primary_path = "main_" + new_cfg.Name + ".png";
-                string secondary_path = "second_" + new_cfg.Name + ".png";
-                primary_path = System.IO.Path.Combine(image_path, primary_path);
-                secondary_path = System.IO.Path.Combine(image_path, secondary_path);
-                primaryScreen.Save(primary_path);
-                secondaryScreen.Save(secondary_path);
+                else
+                {
+                    new_cfg_err_label.Text = "Configuration already exists!";
+                    new_cfg_err_label.Visible = true;
+                }
+
             }
-            cfg_name_box.Clear();
-            cfg_desc_box.Clear();
-            proc_list_view.Items.Clear();
-            this.Close();
-            RefToConfig.Show();
+            else
+            {
+                new_cfg_err_label.Text = "Config Name can't be Empty!";
+                new_cfg_err_label.Visible = true;
+            }
         }
     }
 }
