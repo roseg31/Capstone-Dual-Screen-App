@@ -35,6 +35,7 @@
             this.cancel_exp_btn = new System.Windows.Forms.Button();
             this.exp_file_label = new System.Windows.Forms.Label();
             this.exp_filename = new System.Windows.Forms.TextBox();
+            this.exp_err_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // sel_fol_label
@@ -101,11 +102,23 @@
             this.exp_filename.Size = new System.Drawing.Size(645, 38);
             this.exp_filename.TabIndex = 6;
             // 
+            // exp_err_label
+            // 
+            this.exp_err_label.AutoSize = true;
+            this.exp_err_label.ForeColor = System.Drawing.Color.Red;
+            this.exp_err_label.Location = new System.Drawing.Point(349, 276);
+            this.exp_err_label.Name = "exp_err_label";
+            this.exp_err_label.Size = new System.Drawing.Size(351, 32);
+            this.exp_err_label.TabIndex = 7;
+            this.exp_err_label.Text = "EXPORT_ERROR_LABEL";
+            this.exp_err_label.Visible = false;
+            // 
             // export
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1294, 337);
+            this.Controls.Add(this.exp_err_label);
             this.Controls.Add(this.exp_filename);
             this.Controls.Add(this.exp_file_label);
             this.Controls.Add(this.cancel_exp_btn);
@@ -129,5 +142,6 @@
         private System.Windows.Forms.Button cancel_exp_btn;
         private System.Windows.Forms.Label exp_file_label;
         private System.Windows.Forms.TextBox exp_filename;
+        private System.Windows.Forms.Label exp_err_label;
     }
 }
