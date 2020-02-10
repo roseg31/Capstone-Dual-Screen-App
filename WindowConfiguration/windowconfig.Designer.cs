@@ -197,8 +197,8 @@
             this.Controls.Add(this.cfg_err_label);
             this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.preview_label);
-            this.Controls.Add(this.preview_cfg_companion);
             this.Controls.Add(this.preview_cfg_prim);
+            this.Controls.Add(this.preview_cfg_companion);
             this.Controls.Add(this.del_btn);
             this.Controls.Add(this.exp_btn);
             this.Controls.Add(this.imp_btn);

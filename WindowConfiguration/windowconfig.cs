@@ -133,7 +133,7 @@ namespace WindowConfiguration
         {
             new_config_page.RefToConfig = this;
             this.Hide();
-
+            new_config_page.screenshotlist.Clear();
             // For each screen take a screenshot of their display
             foreach (var screen in Screen.AllScreens)
             {
