@@ -38,6 +38,8 @@ namespace WindowConfiguration
             public int Bottom;
         }
 
+        // Object to hold configuration metadata. Useful for passing an object to the SQLite functions.
+
         public struct Config_Info
         {
             public string Name;
@@ -45,6 +47,7 @@ namespace WindowConfiguration
             public string Description;
         }
 
+        // Struct to hold window handler information. Useful for passing an object to the SQLite functions.
         public struct WindowInfo
         {
             public string Process_Name;
@@ -59,10 +62,12 @@ namespace WindowConfiguration
             public int Height;
         }
 
+        // Get some references to the export,import and new_config_page forms
         private export export_page = new export();
         private import import_page = new import();
         private new_config new_config_page = new new_config();
 
+        // Get reference to homepage for 'back' functionality
         public Form RefToHompage { get; set; }
 
         // Initialize some windows form stuff, VSS does this for us. Don't need to change
@@ -71,16 +76,21 @@ namespace WindowConfiguration
             InitializeComponent();
         }
 
+        // When we load the windowconfig form, we want to display all the user's configurations on the listview
         private void windowconfig_Load(object sender, EventArgs e)
         {
             display_window_config();
         }
 
+        // Get the configuration metadata information from the DB and display it on the listview
         public void display_window_config()
         {
+            // Use SQLite function to query for the configuration metadata from the DB
             cfg_display.Items.Clear();
             List<Config_Info> cfg_list = new List<Config_Info>();
             cfg_list = SqLiteDataAccess.LoadConfigInfo();
+
+            // Loop through each configuration and insert it in the listview
             foreach (var cfg in cfg_list)
             {
                 String[] row = { cfg.Name, cfg.Num_apps.ToString(), cfg.Description };
@@ -89,7 +99,7 @@ namespace WindowConfiguration
             }
         }
 
-
+        // Back button click listener that will use the reference from the homepage form to go back to the homepage
         private void back_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -102,22 +112,27 @@ namespace WindowConfiguration
 
         }
 
+        // export button listener to open up the export form
         private void exp_btn_Click(object sender, EventArgs e)
         {
             export_page.ShowDialog();
         }
 
+        // Check if a window actually has a UI (Don't want to get background apps)
         public static bool IsAppWindow(IntPtr hWnd)
         {
             int style = GetWindowLong(hWnd, -16);
             return (style & 0x10C00000) == 0x10C00000;
         }
 
+        // Loop through all monitors and take a screenshot of each monitor
         private void capture_screens()
         {
             int screen_count = 0;
             new_config_page.RefToConfig = this;
             this.Hide();
+
+            // For each screen take a screenshot of their display
             foreach (var screen in Screen.AllScreens)
             {
                 Bitmap screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -138,6 +153,7 @@ namespace WindowConfiguration
             this.Show();
         }
 
+        // Get all the foreground processes and display them in a listview in thew new_config form
         private int get_processes()
         {
             var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
@@ -158,6 +174,7 @@ namespace WindowConfiguration
 
                     if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
                     {
+                        // Get mainwindowtitle, location, size and display them in the listview for the new_config form
                         process_count++;
                         string topleftcoord = "(" + rect.Left + "," + rect.Top + "), ";
                         string bottomrightcoord = "(" + rect.Right + "," + rect.Bottom + ")";
@@ -165,7 +182,6 @@ namespace WindowConfiguration
                         int width = Math.Abs((rect.Left) - (rect.Right));
                         int height = Math.Abs((rect.Top) - (rect.Bottom));
                         string size = width.ToString() + " x " + height.ToString();
-
                         String[] row = { proc.MainWindowTitle, location, size };
                         new_config_page.set_process_list_view(row);
 
@@ -190,8 +206,10 @@ namespace WindowConfiguration
         }
 
 
+        // new config button listener to open up the new_config form
         private void new_cfg_btn_Click(object sender, EventArgs e)
         {
+            // Capture the screens and foreground processes and display them in the new_config form
             if (get_processes() != 0)
             {
                 capture_screens();
@@ -207,6 +225,7 @@ namespace WindowConfiguration
 
         }
 
+        // Import button listener to open up the import form
         private void imp_btn_Click(object sender, EventArgs e)
         {
 
@@ -214,14 +233,18 @@ namespace WindowConfiguration
             display_window_config();
         }
 
+        // Delete button listener to delete the selected configuration in the listview
         private void del_btn_Click(object sender, EventArgs e)
         {
             if(cfg_display.SelectedItems.Count > 0)
             {
+                // Remove configuration metadata and window information from the DB
                 SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
                 preview_cfg_prim.Image = null;
                 preview_cfg_companion.Image = null;
                 cfg_err_label.Visible = false;
+
+                // Remove stored pictures for the currently selected configuration
                 if (System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text)){
                     System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
                 }
@@ -235,9 +258,10 @@ namespace WindowConfiguration
 
         }
 
-
+        // When you change the selected item in the listview, import the preview image for the selected configuration
         private void cfg_display_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Get the image preview stored in the ConfigScreens folder and display them to user
             if (cfg_display.SelectedItems.Count > 0)
             {
                 this.preview_cfg_prim.SizeMode = PictureBoxSizeMode.Zoom;
@@ -275,6 +299,7 @@ namespace WindowConfiguration
             }
         }
 
+        // Configure button listener to move and resize windows based on the selected configuration
         private void configure_btn_Click(object sender, EventArgs e)
         {
             if (cfg_display.SelectedItems.Count > 0)
@@ -285,6 +310,8 @@ namespace WindowConfiguration
                 RECT rect = new RECT();
                 IntPtr hWnd;
                 cfg_err_label.Visible = false;
+
+                // Match window handler with process. When there is a match, resize and move window handler to right position
                 foreach (var window in windows)
                 {
                     foreach (var proc in processes)

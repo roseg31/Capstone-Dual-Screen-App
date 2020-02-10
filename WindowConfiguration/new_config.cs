@@ -12,8 +12,11 @@ namespace WindowConfiguration
 {
     public partial class new_config : Form
     {
+        // Reference to the primary and secondary preview imagebox
         public Bitmap primaryScreen;
         public Bitmap secondaryScreen;
+
+        // Struct to hold window handler information. Useful for passing an object to the SQLite functions.
         public struct WindowInfo
         {
             public string Process_Name;
@@ -28,6 +31,7 @@ namespace WindowConfiguration
             public int Height;
         }
 
+        // Object to hold configuration metadata. Useful for passing an object to the SQLite functions.
         public struct Config_Info
         {
             public string Name;
@@ -35,33 +39,40 @@ namespace WindowConfiguration
             public string Description;
         }
 
+        // Holds a list of windows and their fields based on the struct above
         public List<WindowInfo> win_list = new List<WindowInfo>();
 
+        // Reference to the windowconfig form for back navigation
         public Form RefToConfig { get; set; }
-
+        
+        // Initialize some windows form stuff, VSS does this for us. Don't need to change
         public new_config()
         {
             InitializeComponent();
         }
 
+        // Set the primary display imagebox to the passed in screenshot
         public void set_primary_disp(Bitmap screenshot)
         {
             this.PrimaryScreenDisp.SizeMode = PictureBoxSizeMode.Zoom;
             PrimaryScreenDisp.Image = screenshot;
         }
 
+        // Set the secondary display imagebox to the passed in screenshot
         public void set_secondary_disp(Bitmap screenshot)
         {
             this.CompanionScreenDisp.SizeMode = PictureBoxSizeMode.Zoom;
             CompanionScreenDisp.Image = screenshot;
         }
 
+        // Add a row to the listview based on a passed in process
         public void set_process_list_view(String[] row)
         {
             ListViewItem item = new ListViewItem(row);
             proc_list_view.Items.Add(item);
         }
 
+        // Clear the process listview
         public void clear_process_list_view()
         {
             proc_list_view.Items.Clear();
@@ -73,6 +84,7 @@ namespace WindowConfiguration
 
         }
 
+        // Cancel button listener to close the new_config form
         private void cncl_cfg_btn_Click(object sender, EventArgs e)
         {
 
@@ -82,12 +94,14 @@ namespace WindowConfiguration
             RefToConfig.Show();
         }
 
+        // Save button listener and store new configuration info into the DB
         private void save_cfg_btn_Click(object sender, EventArgs e)
         {
             if(cfg_name_box.Text != "")
             {
                 if (!SqLiteDataAccess.check_table_exists(cfg_name_box.Text))
-                {
+                {   
+                    // Add configuration metadata, configuration table and windows to the DB
                     Config_Info new_cfg = new Config_Info();
                     new_cfg.Name = cfg_name_box.Text;
                     new_cfg.Description = cfg_desc_box.Text;
@@ -99,6 +113,7 @@ namespace WindowConfiguration
                         SqLiteDataAccess.SaveWindow(window, new_cfg.Name);
                     }
 
+                    // Save image previews to ConfigScreens folder for later previewing in windowconfig form
                     string image_path = @".\ConfigScreens\" + new_cfg.Name;
                     System.IO.Directory.CreateDirectory(image_path);
                     string primary_path = "main_" + new_cfg.Name + ".png";

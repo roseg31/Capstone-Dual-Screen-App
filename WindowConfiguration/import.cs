@@ -18,6 +18,7 @@ namespace WindowConfiguration
             InitializeComponent();
         }
 
+        // Browse button listener that allows the user to select a particular .db file
         private void imp_browse_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog import = new OpenFileDialog();
@@ -28,6 +29,7 @@ namespace WindowConfiguration
 
         }
 
+        // Function that recursively clones a directory to the dest
         private static void CloneDirectory(string root, string dest)
         {
             foreach (var directory in System.IO.Directory.GetDirectories(root))
@@ -46,6 +48,7 @@ namespace WindowConfiguration
             }
         }
 
+        // Ok button listener that is used import the .db file and clone the image preview
         private void imp_ok_btn_Click(object sender, EventArgs e)
         {
             if(FilePath.Text != "")
@@ -53,6 +56,8 @@ namespace WindowConfiguration
                 string ImpDestFileName = "WindowDB.db";
                 string ImpDestPath = @".\";
                 string ImpDestFile = System.IO.Path.Combine(ImpDestPath, ImpDestFileName);
+
+                // Import the .db file selected by the user and clone the image folder to the root location
                 if(System.IO.Path.GetFileName(FilePath.Text).Contains(".db")) {
                     System.IO.File.Copy(FilePath.Text, ImpDestFile, true);
                     string db_location = System.IO.Path.GetDirectoryName(FilePath.Text);
@@ -78,6 +83,7 @@ namespace WindowConfiguration
 
         }
 
+        // cancel button listener that closes the import form
         private void cancel_btn_Click(object sender, EventArgs e)
         {
             FilePath.Clear();

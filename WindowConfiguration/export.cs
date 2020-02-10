@@ -17,6 +17,7 @@ namespace WindowConfiguration
             InitializeComponent();
         }
 
+        // Browse button listener that allows the user to browse a folder to save the user's DB
         private void brwse_btn_Click(object sender, EventArgs e)
         {
 
@@ -28,6 +29,7 @@ namespace WindowConfiguration
 
         }
 
+        // Clone a directory to a dest directory
         private static void CloneDirectory(string root, string dest)
         {
             foreach (var directory in System.IO.Directory.GetDirectories(root))
@@ -46,7 +48,7 @@ namespace WindowConfiguration
             }
         }
 
-
+        // Cancel button listener that closes the export form
         private void cancel_exp_btn_Click(object sender, EventArgs e)
         {
             fol_path.Clear();
@@ -55,6 +57,7 @@ namespace WindowConfiguration
             this.Hide();
         }
 
+        // Accept button listener that saves the current user's DB and image previews to a folder
         private void exp_accept_btn_Click(object sender, EventArgs e)
         {
             //Export vars and create export directory
@@ -73,6 +76,7 @@ namespace WindowConfiguration
                     {
                         if (System.IO.Directory.Exists(fol_path.Text))
                         {
+                            // Save the .db DB and the image previews to the selected folder
                             ExpFileName = exp_filename.Text + ".db";
                             System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text);
                             System.IO.Directory.CreateDirectory(fol_path.Text + @"\" + exp_filename.Text + @"\ConfigScreens");
