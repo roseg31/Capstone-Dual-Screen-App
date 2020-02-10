@@ -58,7 +58,11 @@ namespace WindowConfiguration
             foreach (var pb in this.Controls.OfType<PictureBox>())
             {
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Image = screenshotlist[i];
+                if(i < screenshotlist.Count())
+                {
+                    Console.WriteLine(pb.Name);
+                    pb.Image = screenshotlist[i];
+                }
                 i++;
             }
         }

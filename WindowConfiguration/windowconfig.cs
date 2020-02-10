@@ -140,7 +140,7 @@ namespace WindowConfiguration
                 Bitmap screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 Graphics memoryGraphics = Graphics.FromImage(screenshot);
                 memoryGraphics.CopyFromScreen(screen.Bounds.X, screen.Bounds.Y, 0, 0, screen.Bounds.Size, CopyPixelOperation.SourceCopy);
-                new_config_page.screenshotlist.Insert(0,screenshot);
+                new_config_page.screenshotlist.Add(screenshot);
             }
             new_config_page.set_disp();
             this.Show();
@@ -270,7 +270,7 @@ namespace WindowConfiguration
                 foreach (var pb in this.Controls.OfType<PictureBox>())
                 {
                     pb.SizeMode = PictureBoxSizeMode.Zoom;
-                    if (System.IO.File.Exists(screen_image_path[j])){
+                    if (j < screen_count && System.IO.File.Exists(screen_image_path[j])){
                         using(var bmpTemp = new Bitmap(screen_image_path[j]))
                         {
                             pb.Image = new Bitmap(bmpTemp);
