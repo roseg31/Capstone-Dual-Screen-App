@@ -12,9 +12,8 @@ namespace WindowConfiguration
 {
     public partial class new_config : Form
     {
-        // Reference to the primary and secondary preview imagebox
-        public Bitmap primaryScreen;
-        public Bitmap secondaryScreen;
+        // Reference to the screenshot list
+        public List<Bitmap> screenshotlist = new List<Bitmap>();
 
         // Struct to hold window handler information. Useful for passing an object to the SQLite functions.
         public struct WindowInfo
@@ -51,18 +50,17 @@ namespace WindowConfiguration
             InitializeComponent();
         }
 
-        // Set the primary display imagebox to the passed in screenshot
-        public void set_primary_disp(Bitmap screenshot)
+        // Set screenshot for displays
+        public void set_disp()
         {
-            this.PrimaryScreenDisp.SizeMode = PictureBoxSizeMode.Zoom;
-            PrimaryScreenDisp.Image = screenshot;
-        }
-
-        // Set the secondary display imagebox to the passed in screenshot
-        public void set_secondary_disp(Bitmap screenshot)
-        {
-            this.CompanionScreenDisp.SizeMode = PictureBoxSizeMode.Zoom;
-            CompanionScreenDisp.Image = screenshot;
+            int i = 0;
+            Console.WriteLine(screenshotlist.Count());
+            foreach (var pb in this.Controls.OfType<PictureBox>())
+            {
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pb.Image = screenshotlist[i];
+                i++;
+            }
         }
 
         // Add a row to the listview based on a passed in process
@@ -116,12 +114,14 @@ namespace WindowConfiguration
                     // Save image previews to ConfigScreens folder for later previewing in windowconfig form
                     string image_path = @".\ConfigScreens\" + new_cfg.Name;
                     System.IO.Directory.CreateDirectory(image_path);
-                    string primary_path = "main_" + new_cfg.Name + ".png";
-                    string secondary_path = "second_" + new_cfg.Name + ".png";
-                    primary_path = System.IO.Path.Combine(image_path, primary_path);
-                    secondary_path = System.IO.Path.Combine(image_path, secondary_path);
-                    primaryScreen.Save(primary_path);
-                    secondaryScreen.Save(secondary_path);
+                    string screen_image_file;
+                    string screen_image_path;
+                    for(int i = 0; i < screenshotlist.Count(); i++)
+                    {
+                        screen_image_file = (i + 1).ToString() + new_cfg.Name + ".png";
+                        screen_image_path = System.IO.Path.Combine(image_path, screen_image_file);
+                        screenshotlist[i].Save(screen_image_path);
+                    }
                     new_cfg_err_label.Visible = false;
                     cfg_name_box.Clear();
                     cfg_desc_box.Clear();

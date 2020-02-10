@@ -67,6 +67,9 @@ namespace WindowConfiguration
         private import import_page = new import();
         private new_config new_config_page = new new_config();
 
+        // Get the screen count to manage images
+        private int screen_count = Screen.AllScreens.Count(); 
+
         // Get reference to homepage for 'back' functionality
         public Form RefToHompage { get; set; }
 
@@ -128,7 +131,6 @@ namespace WindowConfiguration
         // Loop through all monitors and take a screenshot of each monitor
         private void capture_screens()
         {
-            int screen_count = 0;
             new_config_page.RefToConfig = this;
             this.Hide();
 
@@ -138,18 +140,9 @@ namespace WindowConfiguration
                 Bitmap screenshot = new Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 Graphics memoryGraphics = Graphics.FromImage(screenshot);
                 memoryGraphics.CopyFromScreen(screen.Bounds.X, screen.Bounds.Y, 0, 0, screen.Bounds.Size, CopyPixelOperation.SourceCopy);
-                if (screen_count == 0)
-                {
-                    new_config_page.set_primary_disp(screenshot);
-                    new_config_page.primaryScreen = screenshot;
-                    screen_count++;
-                }
-                else
-                {
-                    new_config_page.set_secondary_disp(screenshot);
-                    new_config_page.secondaryScreen = screenshot;
-                }
+                new_config_page.screenshotlist.Insert(0,screenshot);
             }
+            new_config_page.set_disp();
             this.Show();
         }
 
@@ -240,8 +233,6 @@ namespace WindowConfiguration
             {
                 // Remove configuration metadata and window information from the DB
                 SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
-                preview_cfg_prim.Image = null;
-                preview_cfg_companion.Image = null;
                 cfg_err_label.Visible = false;
 
                 // Remove stored pictures for the currently selected configuration
@@ -264,38 +255,36 @@ namespace WindowConfiguration
             // Get the image preview stored in the ConfigScreens folder and display them to user
             if (cfg_display.SelectedItems.Count > 0)
             {
-                this.preview_cfg_prim.SizeMode = PictureBoxSizeMode.Zoom;
-                this.preview_cfg_companion.SizeMode = PictureBoxSizeMode.Zoom;
+                int j = 0;
                 string config_name = cfg_display.SelectedItems[0].Text;
                 string image_folder = @".\ConfigScreens\" + config_name;
-                string primary_image_file = "main_" + config_name + ".png";
-                string secondary_image_file = "second_" + config_name + ".png";
-                string primary_image_path = System.IO.Path.Combine(image_folder, primary_image_file);
-                string secondary_image_path = System.IO.Path.Combine(image_folder, secondary_image_file);
                 string no_preview_image_path = @".\ConfigScreens\no-preview.jpg";
-
-                if (System.IO.File.Exists(primary_image_path) && System.IO.File.Exists(secondary_image_path))
+                string screen_image_file;
+                List <string> screen_image_path = new List<string>();
+                for (int i = 0; i < screen_count; i++)
                 {
-                    using (var bmpTemp = new Bitmap(primary_image_path))
-                    {
-                        preview_cfg_prim.Image = new Bitmap(bmpTemp);
-                    }
-                    using (var bmpTemp = new Bitmap(secondary_image_path))
-                    {
-                        preview_cfg_companion.Image = new Bitmap(bmpTemp);
-                    }
-                }
-                else
-                {
-                    using (var bmpTemp = new Bitmap(no_preview_image_path))
-                    {
-                        preview_cfg_prim.Image = new Bitmap(bmpTemp);
-                        preview_cfg_companion.Image = new Bitmap(bmpTemp);
-                    }
+                    screen_image_file = (i + 1).ToString() + config_name + ".png";
+                    screen_image_path.Add(System.IO.Path.Combine(image_folder, screen_image_file));
                 }
 
-
-
+                foreach (var pb in this.Controls.OfType<PictureBox>())
+                {
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    if (System.IO.File.Exists(screen_image_path[j])){
+                        using(var bmpTemp = new Bitmap(screen_image_path[j]))
+                        {
+                            pb.Image = new Bitmap(bmpTemp);
+                        }
+                    }
+                    else
+                    {
+                        using (var bmpTemp = new Bitmap(no_preview_image_path))
+                        {
+                            pb.Image = new Bitmap(bmpTemp);
+                        }
+                    }
+                    j++;
+                }
             }
         }
 
