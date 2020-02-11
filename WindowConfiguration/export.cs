@@ -15,6 +15,7 @@ namespace WindowConfiguration
         public export()
         {
             InitializeComponent();
+            this.Text = "Export";
         }
 
         // Browse button listener that allows the user to browse a folder to save the user's DB

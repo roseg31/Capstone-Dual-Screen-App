@@ -77,6 +77,7 @@ namespace WindowConfiguration
         public windowconfig()
         {
             InitializeComponent();
+            this.Text = "Configuration List";
         }
 
         // When we load the windowconfig form, we want to display all the user's configurations on the listview

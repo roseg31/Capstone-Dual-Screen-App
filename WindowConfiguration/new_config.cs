@@ -48,6 +48,7 @@ namespace WindowConfiguration
         public new_config()
         {
             InitializeComponent();
+            this.Text = "New Configuration";
         }
 
         // Set screenshot for displays

@@ -16,6 +16,7 @@ namespace WindowConfiguration
         public import()
         {
             InitializeComponent();
+            this.Text = "Import";
         }
 
         // Browse button listener that allows the user to select a particular .db file
