@@ -146,5 +146,10 @@ namespace WindowConfiguration
                 new_cfg_err_label.Visible = true;
             }
         }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
