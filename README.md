@@ -40,5 +40,5 @@ Looking forward, this project can be taken in a variety of different directions 
 * Custom window configurations within a single application (Ex: Adobe Photoshop).
 * A TechDuo website that can host users’ configurations for easier sharing and uploading.
 
-
+![](Images/main.png)
 
