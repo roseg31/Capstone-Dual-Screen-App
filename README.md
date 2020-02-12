@@ -42,7 +42,7 @@ Looking forward, this project can be taken in a variety of different directions 
 
 # Images
 ![Main Page for Window Configuration](Images/main.PNG)
-Our window configuration application that allows users to create and share new workspaces.
+**Figure 1:** Our window configuration application that allows users to create and share new workspaces.
 
 ![New Config Page for Window Configuration](Images/new_config.PNG)
-Configuration setup page for a particular workspace.
+**Figure 2:** Configuration setup page for a particular workspace.
