@@ -27,7 +27,6 @@ C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\b
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\bin\x64\Debug\Dapper.xml
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\bin\x64\Debug\System.Data.SQLite.xml
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\bin\x64\Debug\System.Data.SQLite.dll.config
-C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\obj\x64\Debug\WindowConfiguration.csprojAssemblyReference.cache
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\obj\x64\Debug\WindowConfiguration.export.resources
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\obj\x64\Debug\WindowConfiguration.homepage.resources
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-Clean\WindowConfiguration\obj\x64\Debug\WindowConfiguration.import.resources

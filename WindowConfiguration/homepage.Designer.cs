@@ -37,7 +37,7 @@
             // cfg_list_btn
             // 
             this.cfg_list_btn.Location = new System.Drawing.Point(299, 172);
-            this.cfg_list_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cfg_list_btn.Margin = new System.Windows.Forms.Padding(2);
             this.cfg_list_btn.Name = "cfg_list_btn";
             this.cfg_list_btn.Size = new System.Drawing.Size(287, 107);
             this.cfg_list_btn.TabIndex = 0;
@@ -74,12 +74,13 @@
             // tutorial_btn
             // 
             this.tutorial_btn.Location = new System.Drawing.Point(342, 324);
-            this.tutorial_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tutorial_btn.Margin = new System.Windows.Forms.Padding(2);
             this.tutorial_btn.Name = "tutorial_btn";
             this.tutorial_btn.Size = new System.Drawing.Size(191, 62);
             this.tutorial_btn.TabIndex = 3;
             this.tutorial_btn.Text = "Tutorial";
             this.tutorial_btn.UseVisualStyleBackColor = true;
+            this.tutorial_btn.Click += new System.EventHandler(this.tutorial_btn_Click);
             // 
             // homepage
             // 
@@ -91,7 +92,7 @@
             this.Controls.Add(this.contact_label);
             this.Controls.Add(this.main_title_label);
             this.Controls.Add(this.cfg_list_btn);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "homepage";
             this.Text = "homepage";
             this.ResumeLayout(false);

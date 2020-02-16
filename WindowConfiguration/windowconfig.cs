@@ -233,13 +233,20 @@ namespace WindowConfiguration
             if(cfg_display.SelectedItems.Count > 0)
             {
                 // Remove configuration metadata and window information from the DB
-                SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[0].Text);
-                cfg_err_label.Visible = false;
+                int idx = cfg_display.SelectedItems.Count - 1;
+                while (idx >= 0) {
+                    SqLiteDataAccess.RemoveConfigData(cfg_display.SelectedItems[idx].Text);
+                    cfg_err_label.Visible = false;
+
+                    if (System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[idx].Text))
+                    {
+                        System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[idx].Text, true);
+                    }
+                    idx--;
+                }
 
                 // Remove stored pictures for the currently selected configuration
-                if (System.IO.Directory.Exists(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text)){
-                    System.IO.Directory.Delete(@".\ConfigScreens\" + cfg_display.SelectedItems[0].Text, true);
-                }
+                
                 display_window_config();
             }
             else

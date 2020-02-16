@@ -36,5 +36,10 @@ namespace WindowConfiguration
         {
 
         }
+
+        private void tutorial_btn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/roseg31/Capstone-Dual-Screen-App");
+        }
     }
 }

@@ -51,7 +51,7 @@
             // back_btn
             // 
             this.back_btn.Location = new System.Drawing.Point(878, 595);
-            this.back_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.back_btn.Margin = new System.Windows.Forms.Padding(2);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(103, 47);
             this.back_btn.TabIndex = 17;
@@ -70,7 +70,7 @@
             this.cfg_display.GridLines = true;
             this.cfg_display.HideSelection = false;
             this.cfg_display.Location = new System.Drawing.Point(54, 107);
-            this.cfg_display.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cfg_display.Margin = new System.Windows.Forms.Padding(2);
             this.cfg_display.Name = "cfg_display";
             this.cfg_display.Size = new System.Drawing.Size(928, 363);
             this.cfg_display.TabIndex = 18;
@@ -108,7 +108,7 @@
             // new_cfg_btn
             // 
             this.new_cfg_btn.Location = new System.Drawing.Point(54, 499);
-            this.new_cfg_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.new_cfg_btn.Margin = new System.Windows.Forms.Padding(2);
             this.new_cfg_btn.Name = "new_cfg_btn";
             this.new_cfg_btn.Size = new System.Drawing.Size(153, 49);
             this.new_cfg_btn.TabIndex = 20;
@@ -119,7 +119,7 @@
             // imp_btn
             // 
             this.imp_btn.Location = new System.Drawing.Point(235, 499);
-            this.imp_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.imp_btn.Margin = new System.Windows.Forms.Padding(2);
             this.imp_btn.Name = "imp_btn";
             this.imp_btn.Size = new System.Drawing.Size(153, 49);
             this.imp_btn.TabIndex = 21;
@@ -130,7 +130,7 @@
             // exp_btn
             // 
             this.exp_btn.Location = new System.Drawing.Point(420, 499);
-            this.exp_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.exp_btn.Margin = new System.Windows.Forms.Padding(2);
             this.exp_btn.Name = "exp_btn";
             this.exp_btn.Size = new System.Drawing.Size(153, 49);
             this.exp_btn.TabIndex = 22;
@@ -141,7 +141,7 @@
             // del_btn
             // 
             this.del_btn.Location = new System.Drawing.Point(613, 499);
-            this.del_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.del_btn.Margin = new System.Windows.Forms.Padding(2);
             this.del_btn.Name = "del_btn";
             this.del_btn.Size = new System.Drawing.Size(153, 49);
             this.del_btn.TabIndex = 23;
@@ -153,7 +153,7 @@
             // 
             this.preview_cfg_prim.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_prim.InitialImage")));
             this.preview_cfg_prim.Location = new System.Drawing.Point(1002, 67);
-            this.preview_cfg_prim.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.preview_cfg_prim.Margin = new System.Windows.Forms.Padding(2);
             this.preview_cfg_prim.Name = "preview_cfg_prim";
             this.preview_cfg_prim.Size = new System.Drawing.Size(472, 314);
             this.preview_cfg_prim.TabIndex = 24;
@@ -164,7 +164,7 @@
             // 
             this.preview_cfg_companion.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_companion.InitialImage")));
             this.preview_cfg_companion.Location = new System.Drawing.Point(1002, 403);
-            this.preview_cfg_companion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.preview_cfg_companion.Margin = new System.Windows.Forms.Padding(2);
             this.preview_cfg_companion.Name = "preview_cfg_companion";
             this.preview_cfg_companion.Size = new System.Drawing.Size(472, 153);
             this.preview_cfg_companion.TabIndex = 25;
@@ -183,7 +183,7 @@
             // configure_btn
             // 
             this.configure_btn.Location = new System.Drawing.Point(1153, 595);
-            this.configure_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.configure_btn.Margin = new System.Windows.Forms.Padding(2);
             this.configure_btn.Name = "configure_btn";
             this.configure_btn.Size = new System.Drawing.Size(190, 47);
             this.configure_btn.TabIndex = 27;
@@ -209,7 +209,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1082, 670);
+            this.ClientSize = new System.Drawing.Size(1520, 670);
             this.Controls.Add(this.cfg_err_label);
             this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.preview_label);
@@ -223,7 +223,7 @@
             this.Controls.Add(this.cfg_display);
             this.Controls.Add(this.back_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "windowconfig";
             this.Text = "DuoTech";
             this.Load += new System.EventHandler(this.windowconfig_Load);
