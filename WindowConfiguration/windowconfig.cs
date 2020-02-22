@@ -305,7 +305,7 @@ namespace WindowConfiguration
                 windows = SqLiteDataAccess.LoadWindow(cfg_display.SelectedItems[0].Text);
                 //var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
                 RECT rect = new RECT();
-                IntPtr hWnd;
+                IntPtr hWnd = IntPtr.Zero;
                 cfg_err_label.Visible = false;
 
                 // Match window handler with process. When there is a match, resize and move window handler to right position
@@ -313,10 +313,19 @@ namespace WindowConfiguration
                 {
                     //foreach (var proc in processes)
                     //{
-                        //if (!string.IsNullOrEmpty(proc.MainWindowTitle))
-                        //{
-                            // Print out some diagnostic information
-                            hWnd = FindWindow(null, window.Process_Title);
+                    //if (!string.IsNullOrEmpty(proc.MainWindowTitle))
+                    //{
+                    // Print out some diagnostic information
+                            Process[] processes = Process.GetProcessesByName(window.Process_Name);
+                            foreach(Process p in processes)
+                            {
+                                hWnd = p.MainWindowHandle;
+                                break;
+                            }
+                            if (hWnd == null || hWnd == IntPtr.Zero)
+                            {
+                                hWnd = FindWindow(null, window.Process_Title);
+                            }
                             if(hWnd == null || hWnd == IntPtr.Zero)
                             {
                                 hWnd = FindWindow(null, window.Process_Name);
