@@ -321,7 +321,10 @@ namespace WindowConfiguration
                     foreach(Process p in processes)
                     {
                         hWnd = p.MainWindowHandle;
-                        break;
+                        if (hWnd != null && hWnd != IntPtr.Zero)
+                        {
+                            break;
+                        }
                     }
                     if (hWnd == null || hWnd == IntPtr.Zero)
                     {
@@ -335,6 +338,7 @@ namespace WindowConfiguration
                     if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
                     {
                         Process.Start(window.Exe_Path);
+                        Console.WriteLine(window.Process_Name);
                         processes = Process.GetProcessesByName(window.Process_Name);
                         foreach(Process p in processes)
                         {
