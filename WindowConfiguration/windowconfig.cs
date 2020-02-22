@@ -304,48 +304,63 @@ namespace WindowConfiguration
                 List<windowconfig.WindowInfo> windows = new List<windowconfig.WindowInfo>();
                 windows = SqLiteDataAccess.LoadWindow(cfg_display.SelectedItems[0].Text);
                 //var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
-                RECT rect = new RECT();
-                IntPtr hWnd = IntPtr.Zero;
+                //RECT rect = new RECT();
+                IntPtr hWnd;
                 cfg_err_label.Visible = false;
 
                 // Match window handler with process. When there is a match, resize and move window handler to right position
                 foreach (var window in windows)
                 {
+                    hWnd = IntPtr.Zero;
                     //foreach (var proc in processes)
                     //{
                     //if (!string.IsNullOrEmpty(proc.MainWindowTitle))
                     //{
                     // Print out some diagnostic information
-                            Process[] processes = Process.GetProcessesByName(window.Process_Name);
-                            foreach(Process p in processes)
-                            {
-                                hWnd = p.MainWindowHandle;
-                                break;
-                            }
-                            if (hWnd == null || hWnd == IntPtr.Zero)
-                            {
-                                hWnd = FindWindow(null, window.Process_Title);
-                            }
-                            if(hWnd == null || hWnd == IntPtr.Zero)
-                            {
-                                hWnd = FindWindow(null, window.Process_Name);
-                            }
+                    Process[] processes = Process.GetProcessesByName(window.Process_Name);
+                    foreach(Process p in processes)
+                    {
+                        hWnd = p.MainWindowHandle;
+                        break;
+                    }
+                    if (hWnd == null || hWnd == IntPtr.Zero)
+                    {
+                        hWnd = FindWindow(null, window.Process_Title);
+                    }
+                    if(hWnd == null || hWnd == IntPtr.Zero)
+                    {
+                        hWnd = FindWindow(null, window.Process_Name);
+                    }
                             
-                            if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
+                    if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
+                    {
+                        Process.Start(window.Exe_Path);
+                        processes = Process.GetProcessesByName(window.Process_Name);
+                        foreach(Process p in processes)
+                        {
+                            //Console.WriteLine(p.MainModule.ModuleName);
+                            hWnd = p.MainWindowHandle;
+                            while (hWnd == null || hWnd == IntPtr.Zero)
                             {
-                                Process.Start(window.Exe_Path);
-                                hWnd = FindWindow(null, window.Process_Title);
-                            }
-                            GetWindowRect(hWnd, out rect);
+                                Process p2 = Process.GetProcessById(p.Id);
+                                hWnd = p2.MainWindowHandle;
+                            }    
+                            break;
+                        }
+                        //hWnd = Process.GetProcessesByName(window.Process_Name).First().MainWindowHandle;
 
-                            if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
-                            {
-                                //if(window.Process_Name == proc.ProcessName)
-                                //{
-                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
-                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
-                                //}
-                            }
+                        //hWnd = FindWindow(null, window.Process_Title);
+                    }
+                    //GetWindowRect(hWnd, out rect);
+
+                    if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
+                    {
+                        //if(window.Process_Name == proc.ProcessName)
+                        //{
+                            SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                            SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                        //}
+                    }
                         //}
                     //}
 
