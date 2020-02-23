@@ -34,8 +34,6 @@
             this.cfg_desc_label = new System.Windows.Forms.Label();
             this.cfg_desc_box = new System.Windows.Forms.TextBox();
             this.preview_label = new System.Windows.Forms.Label();
-            this.save_cfg_btn = new System.Windows.Forms.Button();
-            this.cncl_cfg_btn = new System.Windows.Forms.Button();
             this.proc_list_view = new System.Windows.Forms.ListView();
             this.nameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LocationHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +43,8 @@
             this.CompanionScreenDisp = new System.Windows.Forms.PictureBox();
             this.PrimaryScreenDisp = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.save_cfg_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.cncl_cfg_btn = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.CompanionScreenDisp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrimaryScreenDisp)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             // cfg_name_box
             // 
             this.cfg_name_box.Location = new System.Drawing.Point(24, 125);
-            this.cfg_name_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cfg_name_box.Margin = new System.Windows.Forms.Padding(2);
             this.cfg_name_box.Name = "cfg_name_box";
             this.cfg_name_box.Size = new System.Drawing.Size(338, 26);
             this.cfg_name_box.TabIndex = 1;
@@ -82,7 +82,7 @@
             // cfg_desc_box
             // 
             this.cfg_desc_box.Location = new System.Drawing.Point(24, 200);
-            this.cfg_desc_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cfg_desc_box.Margin = new System.Windows.Forms.Padding(2);
             this.cfg_desc_box.Multiline = true;
             this.cfg_desc_box.Name = "cfg_desc_box";
             this.cfg_desc_box.Size = new System.Drawing.Size(489, 201);
@@ -99,28 +99,6 @@
             this.preview_label.TabIndex = 5;
             this.preview_label.Text = "Preview";
             // 
-            // save_cfg_btn
-            // 
-            this.save_cfg_btn.Location = new System.Drawing.Point(547, 627);
-            this.save_cfg_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.save_cfg_btn.Name = "save_cfg_btn";
-            this.save_cfg_btn.Size = new System.Drawing.Size(152, 50);
-            this.save_cfg_btn.TabIndex = 7;
-            this.save_cfg_btn.Text = "Save";
-            this.save_cfg_btn.UseVisualStyleBackColor = true;
-            this.save_cfg_btn.Click += new System.EventHandler(this.save_cfg_btn_Click);
-            // 
-            // cncl_cfg_btn
-            // 
-            this.cncl_cfg_btn.Location = new System.Drawing.Point(892, 627);
-            this.cncl_cfg_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cncl_cfg_btn.Name = "cncl_cfg_btn";
-            this.cncl_cfg_btn.Size = new System.Drawing.Size(152, 50);
-            this.cncl_cfg_btn.TabIndex = 8;
-            this.cncl_cfg_btn.Text = "Cancel";
-            this.cncl_cfg_btn.UseVisualStyleBackColor = true;
-            this.cncl_cfg_btn.Click += new System.EventHandler(this.cncl_cfg_btn_Click);
-            // 
             // proc_list_view
             // 
             this.proc_list_view.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -132,7 +110,7 @@
             this.proc_list_view.GridLines = true;
             this.proc_list_view.HideSelection = false;
             this.proc_list_view.Location = new System.Drawing.Point(23, 465);
-            this.proc_list_view.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.proc_list_view.Margin = new System.Windows.Forms.Padding(2);
             this.proc_list_view.Name = "proc_list_view";
             this.proc_list_view.Size = new System.Drawing.Size(489, 179);
             this.proc_list_view.TabIndex = 9;
@@ -183,7 +161,7 @@
             // 
             this.CompanionScreenDisp.InitialImage = ((System.Drawing.Image)(resources.GetObject("CompanionScreenDisp.InitialImage")));
             this.CompanionScreenDisp.Location = new System.Drawing.Point(547, 399);
-            this.CompanionScreenDisp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompanionScreenDisp.Margin = new System.Windows.Forms.Padding(2);
             this.CompanionScreenDisp.Name = "CompanionScreenDisp";
             this.CompanionScreenDisp.Size = new System.Drawing.Size(497, 179);
             this.CompanionScreenDisp.TabIndex = 12;
@@ -193,7 +171,7 @@
             // 
             this.PrimaryScreenDisp.InitialImage = ((System.Drawing.Image)(resources.GetObject("PrimaryScreenDisp.InitialImage")));
             this.PrimaryScreenDisp.Location = new System.Drawing.Point(547, 45);
-            this.PrimaryScreenDisp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrimaryScreenDisp.Margin = new System.Windows.Forms.Padding(2);
             this.PrimaryScreenDisp.Name = "PrimaryScreenDisp";
             this.PrimaryScreenDisp.Size = new System.Drawing.Size(497, 344);
             this.PrimaryScreenDisp.TabIndex = 13;
@@ -210,26 +188,62 @@
             this.label1.Text = "New Configuration";
             this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
+            // save_cfg_btn
+            // 
+            this.save_cfg_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.save_cfg_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.save_cfg_btn.FlatAppearance.BorderSize = 0;
+            this.save_cfg_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.save_cfg_btn.Location = new System.Drawing.Point(547, 616);
+            this.save_cfg_btn.Name = "save_cfg_btn";
+            this.save_cfg_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.save_cfg_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.save_cfg_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.save_cfg_btn.Size = new System.Drawing.Size(153, 49);
+            this.save_cfg_btn.TabIndex = 30;
+            this.save_cfg_btn.Text = "Save";
+            this.save_cfg_btn.TextColor = System.Drawing.Color.White;
+            this.save_cfg_btn.UseVisualStyleBackColor = true;
+            this.save_cfg_btn.Click += new System.EventHandler(this.save_cfg_btn_Click);
+            // 
+            // cncl_cfg_btn
+            // 
+            this.cncl_cfg_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.cncl_cfg_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.cncl_cfg_btn.FlatAppearance.BorderSize = 0;
+            this.cncl_cfg_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cncl_cfg_btn.Location = new System.Drawing.Point(873, 618);
+            this.cncl_cfg_btn.Name = "cncl_cfg_btn";
+            this.cncl_cfg_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.cncl_cfg_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.cncl_cfg_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.cncl_cfg_btn.Size = new System.Drawing.Size(153, 49);
+            this.cncl_cfg_btn.TabIndex = 31;
+            this.cncl_cfg_btn.Text = "Cancel";
+            this.cncl_cfg_btn.TextColor = System.Drawing.Color.White;
+            this.cncl_cfg_btn.UseVisualStyleBackColor = true;
+            this.cncl_cfg_btn.Click += new System.EventHandler(this.cncl_cfg_btn_Click);
+            // 
             // new_config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1079, 677);
+            this.Controls.Add(this.cncl_cfg_btn);
+            this.Controls.Add(this.save_cfg_btn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PrimaryScreenDisp);
             this.Controls.Add(this.CompanionScreenDisp);
             this.Controls.Add(this.new_cfg_err_label);
             this.Controls.Add(this.process_list_label);
             this.Controls.Add(this.proc_list_view);
-            this.Controls.Add(this.cncl_cfg_btn);
-            this.Controls.Add(this.save_cfg_btn);
             this.Controls.Add(this.preview_label);
             this.Controls.Add(this.cfg_desc_box);
             this.Controls.Add(this.cfg_desc_label);
             this.Controls.Add(this.cfg_name_box);
             this.Controls.Add(this.cfg_name_label);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "new_config";
             this.Text = "new_config";
             ((System.ComponentModel.ISupportInitialize)(this.CompanionScreenDisp)).EndInit();
@@ -246,8 +260,6 @@
         private System.Windows.Forms.Label cfg_desc_label;
         private System.Windows.Forms.TextBox cfg_desc_box;
         private System.Windows.Forms.Label preview_label;
-        private System.Windows.Forms.Button save_cfg_btn;
-        private System.Windows.Forms.Button cncl_cfg_btn;
         private System.Windows.Forms.ListView proc_list_view;
         private System.Windows.Forms.Label process_list_label;
         private System.Windows.Forms.ColumnHeader nameHeader;
@@ -257,5 +269,7 @@
         private System.Windows.Forms.PictureBox CompanionScreenDisp;
         private System.Windows.Forms.PictureBox PrimaryScreenDisp;
         private System.Windows.Forms.Label label1;
+        private ePOSOne.btnProduct.Button_WOC save_cfg_btn;
+        private ePOSOne.btnProduct.Button_WOC cncl_cfg_btn;
     }
 }

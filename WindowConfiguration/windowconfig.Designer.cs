@@ -29,35 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(windowconfig));
-            this.back_btn = new System.Windows.Forms.Button();
             this.cfg_display = new System.Windows.Forms.ListView();
             this.nameheader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.numappheader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.descriptionheader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cfg_label = new System.Windows.Forms.Label();
-            this.new_cfg_btn = new System.Windows.Forms.Button();
-            this.imp_btn = new System.Windows.Forms.Button();
-            this.exp_btn = new System.Windows.Forms.Button();
-            this.del_btn = new System.Windows.Forms.Button();
             this.preview_cfg_prim = new System.Windows.Forms.PictureBox();
             this.preview_cfg_companion = new System.Windows.Forms.PictureBox();
             this.preview_label = new System.Windows.Forms.Label();
-            this.configure_btn = new System.Windows.Forms.Button();
             this.cfg_err_label = new System.Windows.Forms.Label();
+            this.new_cfg_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.button_WOC2 = new ePOSOne.btnProduct.Button_WOC();
+            this.exp_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.del_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.back_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.configure_btn = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
-            // 
-            // back_btn
-            // 
-            this.back_btn.Location = new System.Drawing.Point(878, 595);
-            this.back_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(103, 47);
-            this.back_btn.TabIndex = 17;
-            this.back_btn.Text = "BACK";
-            this.back_btn.UseVisualStyleBackColor = true;
-            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // cfg_display
             // 
@@ -105,50 +94,6 @@
             this.cfg_label.Text = "Configurations";
             this.cfg_label.Click += new System.EventHandler(this.label1_Click);
             // 
-            // new_cfg_btn
-            // 
-            this.new_cfg_btn.Location = new System.Drawing.Point(54, 499);
-            this.new_cfg_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.new_cfg_btn.Name = "new_cfg_btn";
-            this.new_cfg_btn.Size = new System.Drawing.Size(153, 49);
-            this.new_cfg_btn.TabIndex = 20;
-            this.new_cfg_btn.Text = "NEW CONFIG";
-            this.new_cfg_btn.UseVisualStyleBackColor = true;
-            this.new_cfg_btn.Click += new System.EventHandler(this.new_cfg_btn_Click);
-            // 
-            // imp_btn
-            // 
-            this.imp_btn.Location = new System.Drawing.Point(235, 499);
-            this.imp_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.imp_btn.Name = "imp_btn";
-            this.imp_btn.Size = new System.Drawing.Size(153, 49);
-            this.imp_btn.TabIndex = 21;
-            this.imp_btn.Text = "IMPORT";
-            this.imp_btn.UseVisualStyleBackColor = true;
-            this.imp_btn.Click += new System.EventHandler(this.imp_btn_Click);
-            // 
-            // exp_btn
-            // 
-            this.exp_btn.Location = new System.Drawing.Point(420, 499);
-            this.exp_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.exp_btn.Name = "exp_btn";
-            this.exp_btn.Size = new System.Drawing.Size(153, 49);
-            this.exp_btn.TabIndex = 22;
-            this.exp_btn.Text = "EXPORT";
-            this.exp_btn.UseVisualStyleBackColor = true;
-            this.exp_btn.Click += new System.EventHandler(this.exp_btn_Click);
-            // 
-            // del_btn
-            // 
-            this.del_btn.Location = new System.Drawing.Point(613, 499);
-            this.del_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.del_btn.Name = "del_btn";
-            this.del_btn.Size = new System.Drawing.Size(153, 49);
-            this.del_btn.TabIndex = 23;
-            this.del_btn.Text = "DELETE";
-            this.del_btn.UseVisualStyleBackColor = true;
-            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
-            // 
             // preview_cfg_prim
             // 
             this.preview_cfg_prim.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_prim.InitialImage")));
@@ -180,17 +125,6 @@
             this.preview_label.TabIndex = 26;
             this.preview_label.Text = "Preview";
             // 
-            // configure_btn
-            // 
-            this.configure_btn.Location = new System.Drawing.Point(1153, 595);
-            this.configure_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.configure_btn.Name = "configure_btn";
-            this.configure_btn.Size = new System.Drawing.Size(190, 47);
-            this.configure_btn.TabIndex = 27;
-            this.configure_btn.Text = "Configure";
-            this.configure_btn.UseVisualStyleBackColor = true;
-            this.configure_btn.Click += new System.EventHandler(this.configure_btn_Click);
-            // 
             // cfg_err_label
             // 
             this.cfg_err_label.AutoSize = true;
@@ -204,24 +138,132 @@
             this.cfg_err_label.Text = "CONFIG_ERROR_LABEL";
             this.cfg_err_label.Visible = false;
             // 
+            // new_cfg_btn
+            // 
+            this.new_cfg_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.new_cfg_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.new_cfg_btn.FlatAppearance.BorderSize = 0;
+            this.new_cfg_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.new_cfg_btn.Location = new System.Drawing.Point(54, 499);
+            this.new_cfg_btn.Name = "new_cfg_btn";
+            this.new_cfg_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.new_cfg_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.new_cfg_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.new_cfg_btn.Size = new System.Drawing.Size(153, 49);
+            this.new_cfg_btn.TabIndex = 29;
+            this.new_cfg_btn.Text = "New Config";
+            this.new_cfg_btn.TextColor = System.Drawing.Color.White;
+            this.new_cfg_btn.UseVisualStyleBackColor = true;
+            this.new_cfg_btn.Click += new System.EventHandler(this.new_cfg_btn_Click);
+            // 
+            // button_WOC2
+            // 
+            this.button_WOC2.BorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC2.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.button_WOC2.FlatAppearance.BorderSize = 0;
+            this.button_WOC2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_WOC2.Location = new System.Drawing.Point(233, 499);
+            this.button_WOC2.Name = "button_WOC2";
+            this.button_WOC2.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC2.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.button_WOC2.OnHoverTextColor = System.Drawing.Color.White;
+            this.button_WOC2.Size = new System.Drawing.Size(153, 49);
+            this.button_WOC2.TabIndex = 30;
+            this.button_WOC2.Text = "Import";
+            this.button_WOC2.TextColor = System.Drawing.Color.White;
+            this.button_WOC2.UseVisualStyleBackColor = true;
+            this.button_WOC2.Click += new System.EventHandler(this.imp_btn_Click);
+            // 
+            // exp_btn
+            // 
+            this.exp_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.exp_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.exp_btn.FlatAppearance.BorderSize = 0;
+            this.exp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exp_btn.Location = new System.Drawing.Point(421, 499);
+            this.exp_btn.Name = "exp_btn";
+            this.exp_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.exp_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.exp_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.exp_btn.Size = new System.Drawing.Size(153, 49);
+            this.exp_btn.TabIndex = 31;
+            this.exp_btn.Text = "Export";
+            this.exp_btn.TextColor = System.Drawing.Color.White;
+            this.exp_btn.UseVisualStyleBackColor = true;
+            this.exp_btn.Click += new System.EventHandler(this.exp_btn_Click);
+            // 
+            // del_btn
+            // 
+            this.del_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.del_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.del_btn.FlatAppearance.BorderSize = 0;
+            this.del_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.del_btn.Location = new System.Drawing.Point(608, 499);
+            this.del_btn.Name = "del_btn";
+            this.del_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.del_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.del_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.del_btn.Size = new System.Drawing.Size(153, 49);
+            this.del_btn.TabIndex = 32;
+            this.del_btn.Text = "Delete";
+            this.del_btn.TextColor = System.Drawing.Color.White;
+            this.del_btn.UseVisualStyleBackColor = true;
+            this.del_btn.Click += new System.EventHandler(this.del_btn_Click);
+            // 
+            // back_btn
+            // 
+            this.back_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.back_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.back_btn.FlatAppearance.BorderSize = 0;
+            this.back_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.back_btn.Location = new System.Drawing.Point(1077, 595);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.back_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.back_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.back_btn.Size = new System.Drawing.Size(153, 49);
+            this.back_btn.TabIndex = 33;
+            this.back_btn.Text = "Back";
+            this.back_btn.TextColor = System.Drawing.Color.White;
+            this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
+            // configure_btn
+            // 
+            this.configure_btn.BorderColor = System.Drawing.Color.Transparent;
+            this.configure_btn.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.configure_btn.FlatAppearance.BorderSize = 0;
+            this.configure_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.configure_btn.Location = new System.Drawing.Point(1266, 595);
+            this.configure_btn.Name = "configure_btn";
+            this.configure_btn.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.configure_btn.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.configure_btn.OnHoverTextColor = System.Drawing.Color.White;
+            this.configure_btn.Size = new System.Drawing.Size(153, 49);
+            this.configure_btn.TabIndex = 34;
+            this.configure_btn.Text = "Run Config";
+            this.configure_btn.TextColor = System.Drawing.Color.White;
+            this.configure_btn.UseVisualStyleBackColor = true;
+            this.configure_btn.Click += new System.EventHandler(this.configure_btn_Click);
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1520, 670);
-            this.Controls.Add(this.cfg_err_label);
             this.Controls.Add(this.configure_btn);
+            this.Controls.Add(this.back_btn);
+            this.Controls.Add(this.del_btn);
+            this.Controls.Add(this.exp_btn);
+            this.Controls.Add(this.button_WOC2);
+            this.Controls.Add(this.new_cfg_btn);
+            this.Controls.Add(this.cfg_err_label);
             this.Controls.Add(this.preview_label);
             this.Controls.Add(this.preview_cfg_prim);
             this.Controls.Add(this.preview_cfg_companion);
-            this.Controls.Add(this.del_btn);
-            this.Controls.Add(this.exp_btn);
-            this.Controls.Add(this.imp_btn);
-            this.Controls.Add(this.new_cfg_btn);
             this.Controls.Add(this.cfg_label);
             this.Controls.Add(this.cfg_display);
-            this.Controls.Add(this.back_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "windowconfig";
@@ -235,21 +277,21 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.ListView cfg_display;
         private System.Windows.Forms.Label cfg_label;
         private System.Windows.Forms.ColumnHeader nameheader;
         private System.Windows.Forms.ColumnHeader numappheader;
         private System.Windows.Forms.ColumnHeader descriptionheader;
-        private System.Windows.Forms.Button new_cfg_btn;
-        private System.Windows.Forms.Button imp_btn;
-        private System.Windows.Forms.Button exp_btn;
-        private System.Windows.Forms.Button del_btn;
         private System.Windows.Forms.PictureBox preview_cfg_prim;
         private System.Windows.Forms.PictureBox preview_cfg_companion;
         private System.Windows.Forms.Label preview_label;
-        private System.Windows.Forms.Button configure_btn;
         private System.Windows.Forms.Label cfg_err_label;
+        private ePOSOne.btnProduct.Button_WOC new_cfg_btn;
+        private ePOSOne.btnProduct.Button_WOC button_WOC2;
+        private ePOSOne.btnProduct.Button_WOC exp_btn;
+        private ePOSOne.btnProduct.Button_WOC del_btn;
+        private ePOSOne.btnProduct.Button_WOC back_btn;
+        private ePOSOne.btnProduct.Button_WOC configure_btn;
     }
 }
 

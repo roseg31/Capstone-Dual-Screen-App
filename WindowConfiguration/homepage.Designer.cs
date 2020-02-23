@@ -28,22 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cfg_list_btn = new System.Windows.Forms.Button();
             this.main_title_label = new System.Windows.Forms.Label();
             this.contact_label = new System.Windows.Forms.Label();
-            this.tutorial_btn = new System.Windows.Forms.Button();
+            this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
+            this.button_WOC2 = new ePOSOne.btnProduct.Button_WOC();
             this.SuspendLayout();
-            // 
-            // cfg_list_btn
-            // 
-            this.cfg_list_btn.Location = new System.Drawing.Point(299, 172);
-            this.cfg_list_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.cfg_list_btn.Name = "cfg_list_btn";
-            this.cfg_list_btn.Size = new System.Drawing.Size(287, 107);
-            this.cfg_list_btn.TabIndex = 0;
-            this.cfg_list_btn.Text = "Configuration List";
-            this.cfg_list_btn.UseVisualStyleBackColor = true;
-            this.cfg_list_btn.Click += new System.EventHandler(this.cfg_list_btn_Click);
             // 
             // main_title_label
             // 
@@ -71,16 +60,41 @@
     "\r\nGarciros@oregonstate.edu\r\nFerchlam@oregonstate.edu \r\n\r\n\r\n";
             this.contact_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tutorial_btn
+            // button_WOC1
             // 
-            this.tutorial_btn.Location = new System.Drawing.Point(342, 324);
-            this.tutorial_btn.Margin = new System.Windows.Forms.Padding(2);
-            this.tutorial_btn.Name = "tutorial_btn";
-            this.tutorial_btn.Size = new System.Drawing.Size(191, 62);
-            this.tutorial_btn.TabIndex = 3;
-            this.tutorial_btn.Text = "Tutorial";
-            this.tutorial_btn.UseVisualStyleBackColor = true;
-            this.tutorial_btn.Click += new System.EventHandler(this.tutorial_btn_Click);
+            this.button_WOC1.BorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC1.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.button_WOC1.FlatAppearance.BorderSize = 0;
+            this.button_WOC1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_WOC1.Location = new System.Drawing.Point(382, 176);
+            this.button_WOC1.Name = "button_WOC1";
+            this.button_WOC1.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC1.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.button_WOC1.OnHoverTextColor = System.Drawing.Color.White;
+            this.button_WOC1.Size = new System.Drawing.Size(152, 57);
+            this.button_WOC1.TabIndex = 4;
+            this.button_WOC1.Text = "Configuration List";
+            this.button_WOC1.TextColor = System.Drawing.Color.White;
+            this.button_WOC1.UseVisualStyleBackColor = true;
+            this.button_WOC1.Click += new System.EventHandler(this.cfg_list_btn_Click);
+            // 
+            // button_WOC2
+            // 
+            this.button_WOC2.BorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC2.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.button_WOC2.FlatAppearance.BorderSize = 0;
+            this.button_WOC2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_WOC2.Location = new System.Drawing.Point(382, 258);
+            this.button_WOC2.Name = "button_WOC2";
+            this.button_WOC2.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC2.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.button_WOC2.OnHoverTextColor = System.Drawing.Color.White;
+            this.button_WOC2.Size = new System.Drawing.Size(152, 57);
+            this.button_WOC2.TabIndex = 5;
+            this.button_WOC2.Text = "Tutorial";
+            this.button_WOC2.TextColor = System.Drawing.Color.White;
+            this.button_WOC2.UseVisualStyleBackColor = true;
+            this.button_WOC2.Click += new System.EventHandler(this.tutorial_btn_Click);
             // 
             // homepage
             // 
@@ -88,10 +102,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(926, 566);
-            this.Controls.Add(this.tutorial_btn);
+            this.Controls.Add(this.button_WOC2);
+            this.Controls.Add(this.button_WOC1);
             this.Controls.Add(this.contact_label);
             this.Controls.Add(this.main_title_label);
-            this.Controls.Add(this.cfg_list_btn);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "homepage";
             this.Text = "homepage";
@@ -101,10 +115,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button cfg_list_btn;
         private System.Windows.Forms.Label main_title_label;
         private System.Windows.Forms.Label contact_label;
-        private System.Windows.Forms.Button tutorial_btn;
+        private ePOSOne.btnProduct.Button_WOC button_WOC1;
+        private ePOSOne.btnProduct.Button_WOC button_WOC2;
     }
 }

@@ -22,11 +22,6 @@ namespace WindowConfiguration
         // Browse button listener that allows the user to select a particular .db file
         private void imp_browse_btn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog import = new OpenFileDialog();
-            if (import.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                FilePath.Text = import.FileName;
-            }
 
         }
 
