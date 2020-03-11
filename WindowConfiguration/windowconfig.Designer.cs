@@ -44,6 +44,7 @@
             this.del_btn = new ePOSOne.btnProduct.Button_WOC();
             this.back_btn = new ePOSOne.btnProduct.Button_WOC();
             this.configure_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // preview_cfg_prim
             // 
+            this.preview_cfg_prim.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.preview_cfg_prim.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_prim.InitialImage")));
             this.preview_cfg_prim.Location = new System.Drawing.Point(1002, 67);
             this.preview_cfg_prim.Margin = new System.Windows.Forms.Padding(2);
@@ -107,6 +109,7 @@
             // 
             // preview_cfg_companion
             // 
+            this.preview_cfg_companion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.preview_cfg_companion.InitialImage = ((System.Drawing.Image)(resources.GetObject("preview_cfg_companion.InitialImage")));
             this.preview_cfg_companion.Location = new System.Drawing.Point(1002, 403);
             this.preview_cfg_companion.Margin = new System.Windows.Forms.Padding(2);
@@ -246,12 +249,31 @@
             this.configure_btn.UseVisualStyleBackColor = true;
             this.configure_btn.Click += new System.EventHandler(this.configure_btn_Click);
             // 
+            // button_WOC1
+            // 
+            this.button_WOC1.BorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC1.ButtonColor = System.Drawing.Color.CornflowerBlue;
+            this.button_WOC1.FlatAppearance.BorderSize = 0;
+            this.button_WOC1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_WOC1.Font = new System.Drawing.Font("MS Reference Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_WOC1.Location = new System.Drawing.Point(790, 499);
+            this.button_WOC1.Name = "button_WOC1";
+            this.button_WOC1.OnHoverBorderColor = System.Drawing.Color.Transparent;
+            this.button_WOC1.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
+            this.button_WOC1.OnHoverTextColor = System.Drawing.Color.White;
+            this.button_WOC1.Size = new System.Drawing.Size(147, 49);
+            this.button_WOC1.TabIndex = 35;
+            this.button_WOC1.Text = "Send to Desktop";
+            this.button_WOC1.TextColor = System.Drawing.Color.White;
+            this.button_WOC1.UseVisualStyleBackColor = true;
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1520, 670);
+            this.Controls.Add(this.button_WOC1);
             this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.back_btn);
             this.Controls.Add(this.del_btn);
@@ -292,6 +314,7 @@
         private ePOSOne.btnProduct.Button_WOC del_btn;
         private ePOSOne.btnProduct.Button_WOC back_btn;
         private ePOSOne.btnProduct.Button_WOC configure_btn;
+        private ePOSOne.btnProduct.Button_WOC button_WOC1;
     }
 }
 
