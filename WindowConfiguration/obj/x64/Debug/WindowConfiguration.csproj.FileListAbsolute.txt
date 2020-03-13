@@ -76,3 +76,4 @@ C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-debug\WindowConfiguration\o
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-debug\WindowConfiguration\obj\x64\Debug\WindowConfiguration.csproj.CopyComplete
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-debug\WindowConfiguration\obj\x64\Debug\WindowConfiguration.exe
 C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-debug\WindowConfiguration\obj\x64\Debug\WindowConfiguration.pdb
+C:\Users\roseg\Source\Repos\Capstone-Dual-Screen-App-debug\WindowConfiguration\obj\x64\Debug\WindowConfiguration.csprojAssemblyReference.cache

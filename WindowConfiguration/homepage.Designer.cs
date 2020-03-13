@@ -84,14 +84,14 @@
             this.button_WOC2.ButtonColor = System.Drawing.Color.CornflowerBlue;
             this.button_WOC2.FlatAppearance.BorderSize = 0;
             this.button_WOC2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_WOC2.Location = new System.Drawing.Point(382, 258);
+            this.button_WOC2.Location = new System.Drawing.Point(342, 255);
             this.button_WOC2.Name = "button_WOC2";
             this.button_WOC2.OnHoverBorderColor = System.Drawing.Color.Transparent;
             this.button_WOC2.OnHoverButtonColor = System.Drawing.Color.RoyalBlue;
             this.button_WOC2.OnHoverTextColor = System.Drawing.Color.White;
-            this.button_WOC2.Size = new System.Drawing.Size(152, 57);
+            this.button_WOC2.Size = new System.Drawing.Size(230, 57);
             this.button_WOC2.TabIndex = 5;
-            this.button_WOC2.Text = "Tutorial";
+            this.button_WOC2.Text = "Help & Documentation";
             this.button_WOC2.TextColor = System.Drawing.Color.White;
             this.button_WOC2.UseVisualStyleBackColor = true;
             this.button_WOC2.Click += new System.EventHandler(this.tutorial_btn_Click);
