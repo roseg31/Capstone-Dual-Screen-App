@@ -46,3 +46,7 @@ Looking forward, this project can be taken in a variety of different directions 
 
 ![New Config Page for Window Configuration](Images/new_config.PNG)
 **Figure 2:** Configuration setup page for a particular workspace.
+
+# Video Overview
+
+https://youtu.be/O5wquz2LYHY
