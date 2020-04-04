@@ -51,7 +51,7 @@ namespace WindowConfiguration
         //    public int Bottom;
         //}
         [STAThread]
-        static void Main()
+        static void Main(string[] argv)
         {
             // Gets information about all the monitors the current user has
             //Console.WriteLine("\n Monitor Information \n");
@@ -171,9 +171,18 @@ namespace WindowConfiguration
             //    Console.WriteLine("DB Height: " + window.Height + "\n");
             //}
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new homepage());
+            if (argv.Length > 0)
+            {
+                var winconf = new windowconfig();
+                winconf.run_config(argv[0]);
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new homepage());
+            }
         }
     }
 }
