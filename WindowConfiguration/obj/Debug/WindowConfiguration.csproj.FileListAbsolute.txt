@@ -99,6 +99,8 @@ C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfigura
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\bin\Debug\Dapper.xml
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\bin\Debug\System.Data.SQLite.xml
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.csproj.ResolveComReference.cache
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.export.resources
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.homepage.resources
 C:\Users\Intel-VCSE-11\Documents\GitHub\Capstone-Dual-Screen-App\WindowConfiguration\obj\Debug\WindowConfiguration.import.resources
