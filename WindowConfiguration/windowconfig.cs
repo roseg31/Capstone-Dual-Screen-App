@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IWshRuntimeLibrary;
 
 namespace WindowConfiguration
 {
@@ -301,48 +302,117 @@ namespace WindowConfiguration
         {
             if (cfg_display.SelectedItems.Count > 0)
             {
-                List<windowconfig.WindowInfo> windows = new List<windowconfig.WindowInfo>();
-                windows = SqLiteDataAccess.LoadWindow(cfg_display.SelectedItems[0].Text);
-                var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
-                RECT rect = new RECT();
-                IntPtr hWnd;
-                cfg_err_label.Visible = false;
+                string name = cfg_display.SelectedItems[0].Text;
+                run_config(name);
 
-                // Match window handler with process. When there is a match, resize and move window handler to right position
-                foreach (var window in windows)
-                {
-                    foreach (var proc in processes)
-                    {
-                        if (!string.IsNullOrEmpty(proc.MainWindowTitle))
-                        {
-                            // Print out some diagnostic information
-                            hWnd = FindWindow(null, proc.MainWindowTitle);
-                            GetWindowRect(hWnd, out rect);
-
-                            if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
-                            {
-                                if(window.Process_Name == proc.ProcessName)
-                                {
-                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
-                                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
-                                }
-                            }
-                        }
-                    }
-
-                }
             }
             else
             {
                 cfg_err_label.Text = "Select a Configuration to Configure!";
                 cfg_err_label.Visible = true;
             }
+        }
 
+        public void run_config(string name)
+        {
+            List<windowconfig.WindowInfo> windows = new List<windowconfig.WindowInfo>();
+            windows = SqLiteDataAccess.LoadWindow(name);
+            //var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
+            //RECT rect = new RECT();
+            IntPtr hWnd;
+            cfg_err_label.Visible = false;
+
+            // Match window handler with process. When there is a match, resize and move window handler to right position
+            foreach (var window in windows)
+            {
+                hWnd = IntPtr.Zero;
+                //foreach (var proc in processes)
+                //{
+                //if (!string.IsNullOrEmpty(proc.MainWindowTitle))
+                //{
+                // Print out some diagnostic information
+                Process[] processes = Process.GetProcessesByName(window.Process_Name);
+                foreach (Process p in processes)
+                {
+                    hWnd = p.MainWindowHandle;
+                    if (hWnd != null && hWnd != IntPtr.Zero)
+                    {
+                        break;
+                    }
+                }
+                if (hWnd == null || hWnd == IntPtr.Zero)
+                {
+                    hWnd = FindWindow(null, window.Process_Title);
+                }
+                if (hWnd == null || hWnd == IntPtr.Zero)
+                {
+                    hWnd = FindWindow(null, window.Process_Name);
+                }
+
+                if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
+                {
+                    Process.Start(window.Exe_Path);
+                    //Console.WriteLine(window.Process_Name);
+                    processes = Process.GetProcessesByName(window.Process_Name);
+                    foreach (Process p in processes)
+                    {
+                        //Console.WriteLine(p.MainModule.ModuleName);
+                        hWnd = p.MainWindowHandle;
+                        while (hWnd == null || hWnd == IntPtr.Zero)
+                        {
+                            Process p2 = Process.GetProcessById(p.Id);
+                            hWnd = p2.MainWindowHandle;
+                        }
+                        break;
+                    }
+                    //hWnd = Process.GetProcessesByName(window.Process_Name).First().MainWindowHandle;
+
+                    //hWnd = FindWindow(null, window.Process_Title);
+                }
+                //GetWindowRect(hWnd, out rect);
+
+                if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
+                {
+                    //if(window.Process_Name == proc.ProcessName)
+                    //{
+                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                    //}
+                }
+                //}
+                //}
+
+            }
         }
 
         private void preview_cfg_prim_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void publish_config_Click(object sender, EventArgs e)
+        {
+            if (cfg_display.SelectedItems.Count > 0)
+            {
+                for (int i = 0; i < cfg_display.SelectedItems.Count; i++)
+                {
+                    object shDesktop = (object)"Desktop";
+                    string name = cfg_display.SelectedItems[i].Text;
+                    WshShell shell = new WshShell();
+                    string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Run_" + name + ".lnk";
+                    IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                    shortcut.Description = "Run configuration: " + name;
+                    shortcut.TargetPath = Environment.CurrentDirectory + @"\WindowConfiguration.exe ";
+                    shortcut.WorkingDirectory = Environment.CurrentDirectory;
+                    shortcut.Arguments = name;
+                    shortcut.Save();
+                }
+            }
+            else
+            {
+                cfg_err_label.Text = "Select a Configuration to create a Desktop shortcut for!";
+                cfg_err_label.Visible = true;
+            }
         }
     }
 }
