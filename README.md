@@ -2,6 +2,19 @@
 This is a repo for the dual screen laptop application designed and created by
 capstone team 66a at Oregon State for the ZenBook Pro Duo laptop.
 
+# How to Run - Through Visual Studio
+1. Pull or download a zip from the master branch
+2. If you have Viisual Studio (preferred) open up the file called: "WindowConfiguration.sln". This should open up the file in Visual Studio
+3. Next, to the left of the green "Start" button change the dropdown from "Any CPU" to "x64".
+4. Finally, click the green "Start" button to launch our application.
+5. A video tutorial of how our application works is supplied at the bottom of this README (Skip to 15:17 for demo)
+
+# How to Run - Through executable
+1. Pull or download a zip from the master branch
+2. traverse to the path *Capstone-Dual-Screen-App-master\WindowConfiguration\bin\x64\Debug*
+3. Finally, open up the file called WindowConfiguration.exe to launch our application.
+4. A video tutorial of how our application works is supplied at the bottom of this README (Skip to 15:17 for demo)
+
 
 # Introduction
 The Asus ZenBook Pro Duo is a new paradigm in laptop computing. While having multiple monitors have become common, the idea of having multiple screens on a mobile device such as a laptop is a relatively new idea. The Asus ZenBook Pro Duo is one of the first multi-screen portable devices on the market and as such, faces some interesting challenges. 
