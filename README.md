@@ -15,6 +15,8 @@ capstone team 66a at Oregon State for the ZenBook Pro Duo laptop.
 3. Finally, open up the file called WindowConfiguration.exe to launch our application.
 4. A video tutorial of how our application works is supplied at the bottom of this README (Skip to 15:17 for demo)
 
+# Documentation
+Documentation for this project can be viewed by visiting the path *Capstone-Dual-Screen-App-master\Documentation*. This includes all technical documents from Fall, Winter and Spring.
 
 # Introduction
 The Asus ZenBook Pro Duo is a new paradigm in laptop computing. While having multiple monitors have become common, the idea of having multiple screens on a mobile device such as a laptop is a relatively new idea. The Asus ZenBook Pro Duo is one of the first multi-screen portable devices on the market and as such, faces some interesting challenges. 
@@ -63,3 +65,7 @@ Looking forward, this project can be taken in a variety of different directions 
 # Video Overview
 
 https://youtu.be/O5wquz2LYHY
+1. 0:00 - Project Overview
+2. 1:03 - Technical Overview
+3. 9:11 - UI Overview
+4. 15:17 - Live Demo
