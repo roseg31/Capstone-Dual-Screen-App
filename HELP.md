@@ -3,10 +3,16 @@ Welcome to the DuoTech help page please use the following links to find appropri
 * To learn more about DuoTech please view our README [here](https://github.com/roseg31/Capstone-Dual-Screen-App/blob/master/README.md)
 * To see the installation guide see [here](#Installation)
 * To read a tutorial for the DuoTech application see [here](#Tutorial)
-* For some FAQs see [here](#FAQs)
+* For FAQs see [here](#FAQs)
 
 ## Installation
-### Install From Download
+
+# Install and Run From Executable
+1. Pull or download a zip from the master branch
+2. Navigate to the path *Capstone-Dual-Screen-App-master\WindowConfiguration\bin\x64\Debug*
+3. Open up the file called WindowConfiguration.exe to launch our application.
+
+### Install And Run From Download
 1. Download and install Visual Studio [here](https://visualstudio.microsoft.com/)
 2. Download the repository zip file from the main page [here](https://github.com/roseg31/Capstone-Dual-Screen-App)
 3. Extract the zip file contents to a known location on your computer
@@ -16,7 +22,7 @@ Welcome to the DuoTech help page please use the following links to find appropri
 7. Make sure the drop down menus in the top toolbar are set to 'Debug' and 'x64'
 8. Click the Start button 
 
-### Install From Clone
+### Install And Run From Clone
 1. Download and install Visual Studio [here](https://visualstudio.microsoft.com/)
 2. Copy the clone link from the main page [here](https://github.com/roseg31/Capstone-Dual-Screen-App)
 3. Create a new Visual Studio project using 'Clone or checkout code'
@@ -26,6 +32,8 @@ Welcome to the DuoTech help page please use the following links to find appropri
 7. Click the Start button 
 
 ## Tutorial
+Note that there is a video example of the application at the bottom of the main page [here](https://github.com/roseg31/Capstone-Dual-Screen-App) at the timestamp 15:17.
+
 ### Creating a new configuration
 1. Please align your program windows as desired
 2. Navigate to the configurations page then click the 'New Config' 
