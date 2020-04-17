@@ -7,7 +7,7 @@ Welcome to the DuoTech help page please use the following links to find appropri
 
 ## Installation
 
-# Install and Run From Executable
+### Install and Run From Executable
 1. Pull or download a zip from the master branch
 2. Navigate to the path *Capstone-Dual-Screen-App-master\WindowConfiguration\bin\x64\Debug*
 3. Open up the file called WindowConfiguration.exe to launch our application.
