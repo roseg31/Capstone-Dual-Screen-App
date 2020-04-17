@@ -18,7 +18,7 @@ namespace WindowConfiguration
         public homepage()
         {
             InitializeComponent();
-            this.Text = "Home - Welcome to TechDuo?DuoTech? Who are we?";
+            this.Text = "Home - Welcome to DuoTech";
         }
 
         // This is a button click handler. When the user clicks the button they are transferred to the windowconfig form

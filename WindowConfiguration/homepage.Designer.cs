@@ -37,13 +37,13 @@
             // main_title_label
             // 
             this.main_title_label.Font = new System.Drawing.Font("MS Reference Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.main_title_label.Location = new System.Drawing.Point(246, 60);
+            this.main_title_label.Location = new System.Drawing.Point(133, 60);
             this.main_title_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.main_title_label.Name = "main_title_label";
             this.main_title_label.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.main_title_label.Size = new System.Drawing.Size(433, 86);
+            this.main_title_label.Size = new System.Drawing.Size(653, 86);
             this.main_title_label.TabIndex = 1;
-            this.main_title_label.Text = "TechDuo (Logo)\r\n";
+            this.main_title_label.Text = "Welcome To DuoTech";
             this.main_title_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.main_title_label.Click += new System.EventHandler(this.label1_Click);
             // 
