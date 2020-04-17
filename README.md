@@ -2,18 +2,8 @@
 This is a repo for the dual screen laptop application designed and created by
 capstone team 66a at Oregon State for the ZenBook Pro Duo laptop.
 
-# How to Run - Through Visual Studio
-1. Pull or download a zip from the master branch
-2. If you have Viisual Studio (preferred) open up the file called: "WindowConfiguration.sln". This should open up the file in Visual Studio
-3. Next, to the left of the green "Start" button change the dropdown from "Any CPU" to "x64".
-4. Finally, click the green "Start" button to launch our application.
-5. A video tutorial of how our application works is supplied at the bottom of this README (Skip to 15:17 for demo)
-
-# How to Run - Through executable
-1. Pull or download a zip from the master branch
-2. traverse to the path *Capstone-Dual-Screen-App-master\WindowConfiguration\bin\x64\Debug*
-3. Finally, open up the file called WindowConfiguration.exe to launch our application.
-4. A video tutorial of how our application works is supplied at the bottom of this README (Skip to 15:17 for demo)
+# Install and Run Instructions/Help
+Instructions for using the application can be found in the HELP.md file [here](https://github.com/roseg31/Capstone-Dual-Screen-App/blob/master/HELP.md). 
 
 # Documentation
 Documentation for this project can be viewed by visiting the path *Capstone-Dual-Screen-App-master\Documentation*. This includes all technical documents from Fall, Winter and Spring.
