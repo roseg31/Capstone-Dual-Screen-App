@@ -20,6 +20,10 @@ namespace WindowConfiguration
         /// Since the standard C# library omits these window handler functions need to use import statements
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll", EntryPoint = "FindWindowEx")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
         [DllImport("user32.dll")]
@@ -30,6 +34,13 @@ namespace WindowConfiguration
 
         [DllImport("user32.dll", SetLastError = true)]
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 
         // This struct is used to get the top left and bottom right coordinates of a window
         public struct RECT
@@ -258,6 +269,8 @@ namespace WindowConfiguration
             var process_count = 0;
 
             new_config_page.clear_process_list_view();
+
+
             // Loop through all the currently running processes and get some diagnostic information for each window. You can also insert into the DB and move the window (uncomment last few statements)
             foreach (var proc in processes)
             {
@@ -267,7 +280,6 @@ namespace WindowConfiguration
                     new_config.WindowInfo window = new new_config.WindowInfo();
                     hWnd = FindWindow(null, proc.MainWindowTitle);
                     GetWindowRect(hWnd, out rect);
-
 
                     if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
                     {
@@ -472,10 +484,14 @@ namespace WindowConfiguration
                     hWnd = FindWindow(null, window.Process_Title);
                 }
 
-                if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
+                if (IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
                 {
+                    ShowWindow(hWnd, 3);
+                    SetForegroundWindow(hWnd);
                     SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
                     SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+                    SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
+
                 }
 
             }
