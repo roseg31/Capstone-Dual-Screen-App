@@ -21,6 +21,7 @@ namespace WindowConfiguration
             public string Process_Name;
             public string Process_Title;
             public string Exe_Path;
+            public string Url;
             public int Process_ID;
             public int Left;
             public int Right;
@@ -28,6 +29,7 @@ namespace WindowConfiguration
             public int Bottom;
             public int Width;
             public int Height;
+
         }
 
         // Object to hold configuration metadata. Useful for passing an object to the SQLite functions.

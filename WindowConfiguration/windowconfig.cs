@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Automation;
 using IWshRuntimeLibrary;
 
 namespace WindowConfiguration
@@ -61,6 +62,7 @@ namespace WindowConfiguration
             public int Bottom;
             public int Width;
             public int Height;
+            public string Url;
         }
 
         // Get some references to the export,import and new_config_page forms
@@ -148,6 +150,105 @@ namespace WindowConfiguration
             this.Show();
         }
 
+        public static string GetChromeUrl(Process process)
+        {
+            if (process == null)
+                throw new ArgumentNullException("process");
+
+            if (process.MainWindowHandle == IntPtr.Zero)
+                return null;
+
+            AutomationElement element = AutomationElement.FromHandle(process.MainWindowHandle);
+            if (element == null)
+                return null;
+
+            AutomationElement edit = element.FindFirst(TreeScope.Subtree,
+                 new AndCondition(
+                      new PropertyCondition(AutomationElement.NameProperty, "address and search bar", PropertyConditionFlags.IgnoreCase),
+                      new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Edit)));
+
+            return ((ValuePattern)edit.GetCurrentPattern(ValuePattern.Pattern)).Current.Value as string;
+        }
+
+        public static string GetInternetExplorerUrl(Process process)
+        {
+            if (process == null)
+                throw new ArgumentNullException("process");
+
+            if (process.MainWindowHandle == IntPtr.Zero)
+                return null;
+
+            AutomationElement element = AutomationElement.FromHandle(process.MainWindowHandle);
+            if (element == null)
+                return null;
+
+            AutomationElement rebar = element.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ClassNameProperty, "ReBarWindow32"));
+            if (rebar == null)
+                return null;
+
+            AutomationElement edit = rebar.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Edit));
+
+            return ((ValuePattern)edit.GetCurrentPattern(ValuePattern.Pattern)).Current.Value as string;
+        }
+
+        public static string GetFirefoxUrl(Process process)
+        {
+            if (process == null)
+                throw new ArgumentNullException("process");
+
+            if (process.MainWindowHandle == IntPtr.Zero)
+                return null;
+
+            AutomationElement element = AutomationElement.FromHandle(process.MainWindowHandle);
+            if (element == null)
+                return null;
+
+            AutomationElement doc = element.FindFirst(TreeScope.Subtree, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Document));
+            if (doc == null)
+                return null;
+
+            return ((ValuePattern)doc.GetCurrentPattern(ValuePattern.Pattern)).Current.Value as string;
+        }
+
+        public static string GetFFURL()
+        {
+            foreach (Process process in Process.GetProcessesByName("firefox"))
+            {
+                string url = GetFirefoxUrl(process);
+                if (url == null)
+                    continue;
+
+                return url;
+            }
+            return "";
+        }
+
+        public static string GetCHURL()
+        {
+            foreach (Process process in Process.GetProcessesByName("chrome"))
+            {
+                string url = GetChromeUrl(process);
+                if (url == null)
+                    continue;
+
+                return url;
+            }
+            return "";
+        }
+
+        public static string GetIEURL()
+        {
+            foreach (Process process in Process.GetProcessesByName("iexplore"))
+            {
+                string url = GetInternetExplorerUrl(process);
+                if (url == null)
+                    continue;
+
+                return url;
+            }
+            return "";
+        }
+
         // Get all the foreground processes and display them in a listview in thew new_config form
         private int get_processes()
         {
@@ -166,6 +267,7 @@ namespace WindowConfiguration
                     new_config.WindowInfo window = new new_config.WindowInfo();
                     hWnd = FindWindow(null, proc.MainWindowTitle);
                     GetWindowRect(hWnd, out rect);
+
 
                     if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && proc.ProcessName != "WindowConfiguration")
                     {
@@ -191,6 +293,21 @@ namespace WindowConfiguration
                         window.Process_Title = proc.MainWindowTitle;
                         window.Process_ID = proc.Id;
                         window.Exe_Path = proc.MainModule.FileName;
+                        window.Url = "N/A";
+
+                        if(window.Process_Name == "chrome")
+                        {
+                            window.Url = GetCHURL();
+                        }
+                        if (window.Process_Name == "firefox")
+                        {
+                            window.Url = GetFFURL();
+                        }
+                        if (window.Process_Name == "iexplore")
+                        {
+                            window.Url = GetIEURL();
+                        }
+
                         new_config_page.win_list.Add(window);
 
 
@@ -317,8 +434,6 @@ namespace WindowConfiguration
         {
             List<windowconfig.WindowInfo> windows = new List<windowconfig.WindowInfo>();
             windows = SqLiteDataAccess.LoadWindow(name);
-            //var processes = Process.GetProcesses().Where(pr => pr.MainWindowHandle != IntPtr.Zero);
-            //RECT rect = new RECT();
             IntPtr hWnd;
             cfg_err_label.Visible = false;
 
@@ -326,11 +441,6 @@ namespace WindowConfiguration
             foreach (var window in windows)
             {
                 hWnd = IntPtr.Zero;
-                //foreach (var proc in processes)
-                //{
-                //if (!string.IsNullOrEmpty(proc.MainWindowTitle))
-                //{
-                // Print out some diagnostic information
                 Process[] processes = Process.GetProcessesByName(window.Process_Name);
                 foreach (Process p in processes)
                 {
@@ -351,36 +461,22 @@ namespace WindowConfiguration
 
                 if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
                 {
-                    Process.Start(window.Exe_Path);
-                    //Console.WriteLine(window.Process_Name);
-                    processes = Process.GetProcessesByName(window.Process_Name);
-                    foreach (Process p in processes)
-                    {
-                        //Console.WriteLine(p.MainModule.ModuleName);
-                        hWnd = p.MainWindowHandle;
-                        while (hWnd == null || hWnd == IntPtr.Zero)
-                        {
-                            Process p2 = Process.GetProcessById(p.Id);
-                            hWnd = p2.MainWindowHandle;
-                        }
-                        break;
+                    
+                    if (window.Url != "N/A") {
+                        Process.Start(window.Exe_Path, window.Url);
                     }
-                    //hWnd = Process.GetProcessesByName(window.Process_Name).First().MainWindowHandle;
-
-                    //hWnd = FindWindow(null, window.Process_Title);
+                    else
+                    {
+                        Process.Start(window.Exe_Path);
+                    }
+                    hWnd = FindWindow(null, window.Process_Title);
                 }
-                //GetWindowRect(hWnd, out rect);
 
                 if (IsIconic(hWnd) == false && IsAppWindow(hWnd) && window.Process_Name != "WindowConfiguration")
                 {
-                    //if(window.Process_Name == proc.ProcessName)
-                    //{
                     SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
                     SetWindowPos(hWnd, IntPtr.Zero, window.Left, window.Top, window.Width, window.Height, 0x0200);
-                    //}
                 }
-                //}
-                //}
 
             }
         }

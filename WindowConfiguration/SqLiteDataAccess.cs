@@ -102,6 +102,7 @@ namespace WindowConfiguration
                 "('ID'    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE," +
                 "'Process_ID'   INTEGER," +
                 "'Process_Title' TEXT," +
+                "'Url' TEXT," +
                 "'Process_Name'  TEXT NOT NULL," +
                 "'Exe_Path' TEXT," +
                 "'Left'  INTEGER," +
@@ -126,6 +127,7 @@ namespace WindowConfiguration
                 string process_title = "'" + window.Process_Title + "'";
                 string process_name = "'" + window.Process_Name + "'";
                 string exe_path = "'" + window.Exe_Path + "'";
+                string url = "'" + window.Url + "'";
                 int left = window.Left;
                 int right = window.Right;
                 int top = window.Top;
@@ -138,7 +140,7 @@ namespace WindowConfiguration
                     window_config_name = "[" + window_config_name + "]";
                 }
 
-                string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Process_Name, Exe_Path, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title + ", "+process_name+","+exe_path+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
+                string Sql_Insert = "insert into " + window_config_name + "(Process_ID, Process_Title, Url, Process_Name, Exe_Path, Left, Right, Top, Bottom, Width, Height) values (" + process_id + ", " +process_title+ ", " + url + ", " + process_name+","+exe_path+"," +left+ ", " + right + ", " + top + ", " + bottom + ", " + width + ", " + height + ")";
                 cnn.Execute(Sql_Insert, window);
             }
         }
