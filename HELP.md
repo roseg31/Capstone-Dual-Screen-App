@@ -56,3 +56,6 @@ Note that there is a video example of the application at the bottom of the main 
 ## FAQs
 ### Who do I contact for more information or help?
 You can reach us by email at sakthisa---, kieftd---, garciros---, or ferchlam--- (replace '---' with @oregonstate.edu) 
+
+### I'm looking at the app in visual studio and seeing tons of errors on the UI designer. What's wrong?
+These errors show up every time the code is built using the 'x64' setting as opposed to the 'Any CPU' and can be ignored when running the program. Please view these pages using the 'view code' option instead of the designer. If you would like to know how to develop/make changes to the UI please contact garciros as described above.
