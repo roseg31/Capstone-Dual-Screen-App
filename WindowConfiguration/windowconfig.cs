@@ -120,7 +120,15 @@ namespace WindowConfiguration
         // export button listener to open up the export form
         private void exp_btn_Click(object sender, EventArgs e)
         {
-            export_page.ShowDialog();
+            if (cfg_display.SelectedItems.Count > 0)
+            {
+                export_page.ShowDialog();
+            }
+            else
+            {
+                cfg_err_label.Text = "Select a Configuration to Export!";
+                cfg_err_label.Visible = true;
+            }
         }
 
         // Check if a window actually has a UI (Don't want to get background apps)
@@ -133,6 +141,7 @@ namespace WindowConfiguration
         // Loop through all monitors and take a screenshot of each monitor
         private void capture_screens()
         {
+            
             new_config_page.RefToConfig = this;
             this.Hide();
             new_config_page.screenshotlist.Clear();
@@ -264,6 +273,19 @@ namespace WindowConfiguration
             // Get the image preview stored in the ConfigScreens folder and display them to user
             if (cfg_display.SelectedItems.Count > 0)
             {
+                //Ungrey the buttons
+                exp_btn.ButtonColor = Color.CornflowerBlue;
+                exp_btn.OnHoverButtonColor = Color.RoyalBlue;
+
+                del_btn.ButtonColor = Color.CornflowerBlue;
+                del_btn.OnHoverButtonColor = Color.RoyalBlue;
+
+                button_WOC1.ButtonColor = Color.CornflowerBlue;
+                button_WOC1.OnHoverButtonColor = Color.RoyalBlue;
+
+                configure_btn.ButtonColor = Color.CornflowerBlue;
+                configure_btn.OnHoverButtonColor = Color.RoyalBlue;
+
                 int j = 0;
                 string config_name = cfg_display.SelectedItems[0].Text;
                 string image_folder = @".\ConfigScreens\" + config_name;
@@ -294,6 +316,20 @@ namespace WindowConfiguration
                     }
                     j++;
                 }
+            } else
+            {
+                //re-grey the buttons
+                exp_btn.ButtonColor = Color.LightSlateGray;
+                exp_btn.OnHoverButtonColor = Color.LightSlateGray;
+
+                del_btn.ButtonColor = Color.LightSlateGray;
+                del_btn.OnHoverButtonColor = Color.LightSlateGray;
+
+                button_WOC1.ButtonColor = Color.LightSlateGray;
+                button_WOC1.OnHoverButtonColor = Color.LightSlateGray;
+
+                configure_btn.ButtonColor = Color.LightSlateGray;
+                configure_btn.OnHoverButtonColor = Color.LightSlateGray;
             }
         }
 
