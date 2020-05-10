@@ -59,3 +59,8 @@ https://youtu.be/O5wquz2LYHY
 2. 1:03 - Technical Overview
 3. 9:11 - UI Overview
 4. 15:17 - Live Demo
+
+# Changelog (Code Review Feedback)
+* Changed button colors to indicate when they are enabled or disabled.
+* Added a FAQ entry that indicates that the software is only available for Windows users
+* Moved executables and binary files to different location
