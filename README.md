@@ -62,5 +62,6 @@ https://youtu.be/O5wquz2LYHY
 
 # Changelog (Code Review Feedback)
 * Changed button colors to indicate when they are enabled or disabled.
+* Added more comments and refactored long functions.
 * Added a FAQ entry that indicates that the software is only available for Windows users
 * Moved executables and binary files to different location
