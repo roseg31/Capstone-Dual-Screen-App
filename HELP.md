@@ -64,4 +64,4 @@ These errors show up every time the code is built using the 'x64' setting as opp
 Currently the application is built for the Windows operating system and has not been developed for other OS.
 
 ### Why am I unable to capture certain browser windows?
-The application can only capture the most recently active browser tab. There is also an issue with capturing Edge windows, so the application only works with Chrome, Firefox and Internet Explorer.
+The application only loads applications and doesn't save the current state of an application.
