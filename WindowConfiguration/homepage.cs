@@ -28,10 +28,10 @@ namespace WindowConfiguration
             update_homepage_tutorial();
         }
 
+        //Handles updating tutorial elements for homepage
         private void update_homepage_tutorial()
         {
             //If tutorial is running, show tutorial elements
-
             if (Properties.Settings.Default.runTutorial == true)
             {
                 if(Properties.Settings.Default.endingHomeTut == true)
@@ -78,6 +78,7 @@ namespace WindowConfiguration
             System.Diagnostics.Process.Start("https://github.com/roseg31/Capstone-Dual-Screen-App/blob/master/HELP.md");
         }
 
+        //Get input from tutorial check box and change settings accordingly
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (tutorialRun.Checked)

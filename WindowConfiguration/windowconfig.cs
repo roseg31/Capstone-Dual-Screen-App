@@ -90,10 +90,10 @@ namespace WindowConfiguration
             //Console.WriteLine("5");
         }
 
+        //Handles updating tutorial elements for config page
         public void update_configlist_tutorial()
         {
-            //If tutorial is running, show tutorial elements
-
+            //If tutorial is running, show correct tutorial elements based on settings
             if (Properties.Settings.Default.runTutorial == true)
             {
                 if(Properties.Settings.Default.createConfigTut == true)
@@ -293,6 +293,7 @@ namespace WindowConfiguration
         // new config button listener to open up the new_config form
         private void new_cfg_btn_Click(object sender, EventArgs e)
         {
+            //If running tutorial, go to next step
             if (Properties.Settings.Default.runTutorial == true && 
                 Properties.Settings.Default.createConfigTut == true)
             {
@@ -361,7 +362,7 @@ namespace WindowConfiguration
             // Get the image preview stored in the ConfigScreens folder and display them to user
             if (cfg_display.SelectedItems.Count > 0)
             {
-
+                //If running tutorial, show next step
                 if (Properties.Settings.Default.runTutorial == true &&
                 Properties.Settings.Default.selectConfigTut == true)
                 {
@@ -435,6 +436,7 @@ namespace WindowConfiguration
         {
             if (cfg_display.SelectedItems.Count > 0)
             {
+                //If running tutorial, can show next step
                 if (Properties.Settings.Default.runTutorial == true &&
                 Properties.Settings.Default.runConfigTut == true)
                 {
@@ -443,6 +445,7 @@ namespace WindowConfiguration
                 }
 
                 update_configlist_tutorial();
+
                 string name = cfg_display.SelectedItems[0].Text;
                 run_config(name);
 

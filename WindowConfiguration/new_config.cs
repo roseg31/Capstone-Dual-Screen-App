@@ -54,9 +54,10 @@ namespace WindowConfiguration
             update_newconfig_tutorial();
         }
 
+        //Handles updating tutorial elements for new config page
         public void update_newconfig_tutorial()
         {
-            //If tutorial is running, show tutorial elements
+            //If tutorial is running, show appropriate tutorial elements
 
             if (Properties.Settings.Default.runTutorial == true)
             {
@@ -143,6 +144,7 @@ namespace WindowConfiguration
             {
                 if (!SqLiteDataAccess.check_table_exists(cfg_name_box.Text))
                 {
+                    //If tutorial is running, update setting and tutorial elements
                     if (Properties.Settings.Default.runTutorial == true &&
                          Properties.Settings.Default.configSaveTut == true)
                     {
@@ -200,7 +202,7 @@ namespace WindowConfiguration
 
         private void cfg_name_box_TextChanged(object sender, EventArgs e)
         {
-            //tutorial logic
+            //If tutorial is running, update settings to go to next step
             if (cfg_name_box.Text != "")
             {
                 if (Properties.Settings.Default.runTutorial == true &&
