@@ -45,6 +45,13 @@
             this.back_btn = new ePOSOne.btnProduct.Button_WOC();
             this.configure_btn = new ePOSOne.btnProduct.Button_WOC();
             this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
+            this.NewConfigTutorial = new System.Windows.Forms.RichTextBox();
+            this.runTutorial = new System.Windows.Forms.RichTextBox();
+            this.importExportTutorial = new System.Windows.Forms.RichTextBox();
+            this.desktopTutorial = new System.Windows.Forms.RichTextBox();
+            this.deleteTutorial = new System.Windows.Forms.RichTextBox();
+            this.listTutorial = new System.Windows.Forms.RichTextBox();
+            this.backTut = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_prim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.preview_cfg_companion)).BeginInit();
             this.SuspendLayout();
@@ -268,12 +275,110 @@
             this.button_WOC1.UseVisualStyleBackColor = true;
             this.button_WOC1.Click += new System.EventHandler(this.publish_config_Click);
             // 
+            // NewConfigTutorial
+            // 
+            this.NewConfigTutorial.BackColor = System.Drawing.Color.Orange;
+            this.NewConfigTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.NewConfigTutorial.ForeColor = System.Drawing.Color.White;
+            this.NewConfigTutorial.Location = new System.Drawing.Point(25, 381);
+            this.NewConfigTutorial.Name = "NewConfigTutorial";
+            this.NewConfigTutorial.ReadOnly = true;
+            this.NewConfigTutorial.Size = new System.Drawing.Size(182, 112);
+            this.NewConfigTutorial.TabIndex = 36;
+            this.NewConfigTutorial.Text = "Tutorial Step 2:                         This is where you\'ll find your preconfig" +
+    "ured set ups. Click \'New Config\' to create one!";
+            // 
+            // runTutorial
+            // 
+            this.runTutorial.BackColor = System.Drawing.Color.Orange;
+            this.runTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.runTutorial.ForeColor = System.Drawing.Color.White;
+            this.runTutorial.Location = new System.Drawing.Point(1292, 478);
+            this.runTutorial.Name = "runTutorial";
+            this.runTutorial.ReadOnly = true;
+            this.runTutorial.Size = new System.Drawing.Size(182, 111);
+            this.runTutorial.TabIndex = 37;
+            this.runTutorial.Text = "Tutorial Step 6:                               Now let\'s run the configuration! S" +
+    "elect it from the list and click \'Run Config\'!";
+            // 
+            // importExportTutorial
+            // 
+            this.importExportTutorial.BackColor = System.Drawing.Color.Goldenrod;
+            this.importExportTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.importExportTutorial.ForeColor = System.Drawing.Color.White;
+            this.importExportTutorial.Location = new System.Drawing.Point(306, 381);
+            this.importExportTutorial.Name = "importExportTutorial";
+            this.importExportTutorial.ReadOnly = true;
+            this.importExportTutorial.Size = new System.Drawing.Size(182, 112);
+            this.importExportTutorial.TabIndex = 39;
+            this.importExportTutorial.Text = "Helpful tip:                          The \'Import\' and \'Export\' buttons can be us" +
+    "ed to share your configurations!";
+            // 
+            // desktopTutorial
+            // 
+            this.desktopTutorial.BackColor = System.Drawing.Color.Goldenrod;
+            this.desktopTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.desktopTutorial.ForeColor = System.Drawing.Color.White;
+            this.desktopTutorial.Location = new System.Drawing.Point(780, 381);
+            this.desktopTutorial.Name = "desktopTutorial";
+            this.desktopTutorial.ReadOnly = true;
+            this.desktopTutorial.Size = new System.Drawing.Size(182, 112);
+            this.desktopTutorial.TabIndex = 40;
+            this.desktopTutorial.Text = "Helpful tip:                          Clicking \'Send to Desktop\' will create a de" +
+    "sktop shortcut for a selected configuration!";
+            // 
+            // deleteTutorial
+            // 
+            this.deleteTutorial.BackColor = System.Drawing.Color.Goldenrod;
+            this.deleteTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.deleteTutorial.ForeColor = System.Drawing.Color.White;
+            this.deleteTutorial.Location = new System.Drawing.Point(592, 371);
+            this.deleteTutorial.Name = "deleteTutorial";
+            this.deleteTutorial.ReadOnly = true;
+            this.deleteTutorial.Size = new System.Drawing.Size(182, 122);
+            this.deleteTutorial.TabIndex = 41;
+            this.deleteTutorial.Text = "Helpful tip:                          You can select a configuration from the lis" +
+    "t and use the \'Delete\' button to remove it from the list!";
+            // 
+            // listTutorial
+            // 
+            this.listTutorial.BackColor = System.Drawing.Color.Orange;
+            this.listTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listTutorial.ForeColor = System.Drawing.Color.White;
+            this.listTutorial.Location = new System.Drawing.Point(324, 30);
+            this.listTutorial.Name = "listTutorial";
+            this.listTutorial.ReadOnly = true;
+            this.listTutorial.Size = new System.Drawing.Size(182, 111);
+            this.listTutorial.TabIndex = 38;
+            this.listTutorial.Text = "Tutorial Step 5:                          Your configurations will show up in thi" +
+    "s list. Click on the one you made to select it!";
+            // 
+            // backTut
+            // 
+            this.backTut.BackColor = System.Drawing.Color.Orange;
+            this.backTut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.backTut.ForeColor = System.Drawing.Color.White;
+            this.backTut.Location = new System.Drawing.Point(1048, 478);
+            this.backTut.Name = "backTut";
+            this.backTut.ReadOnly = true;
+            this.backTut.Size = new System.Drawing.Size(182, 105);
+            this.backTut.TabIndex = 42;
+            this.backTut.Text = "Tutorial Step 7:                          Almost done! Click \'Back\' to return to " +
+    "the Homepage and finish the tutorial!";
+            // 
             // windowconfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1493, 670);
+            this.Controls.Add(this.backTut);
+            this.Controls.Add(this.deleteTutorial);
+            this.Controls.Add(this.desktopTutorial);
+            this.Controls.Add(this.importExportTutorial);
+            this.Controls.Add(this.listTutorial);
+            this.Controls.Add(this.runTutorial);
+            this.Controls.Add(this.NewConfigTutorial);
             this.Controls.Add(this.button_WOC1);
             this.Controls.Add(this.configure_btn);
             this.Controls.Add(this.back_btn);
@@ -316,6 +421,13 @@
         private ePOSOne.btnProduct.Button_WOC back_btn;
         private ePOSOne.btnProduct.Button_WOC configure_btn;
         private ePOSOne.btnProduct.Button_WOC button_WOC1;
+        private System.Windows.Forms.RichTextBox NewConfigTutorial;
+        private System.Windows.Forms.RichTextBox runTutorial;
+        private System.Windows.Forms.RichTextBox importExportTutorial;
+        private System.Windows.Forms.RichTextBox desktopTutorial;
+        private System.Windows.Forms.RichTextBox deleteTutorial;
+        private System.Windows.Forms.RichTextBox listTutorial;
+        private System.Windows.Forms.RichTextBox backTut;
     }
 }
 

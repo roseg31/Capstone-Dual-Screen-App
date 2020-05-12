@@ -49,19 +49,58 @@ namespace WindowConfiguration
         {
             InitializeComponent();
             this.Text = "New Configuration";
+            configNameTut.Visible = false;
+            saveConfigTut.Visible = false;
+            update_newconfig_tutorial();
+        }
+
+        public void update_newconfig_tutorial()
+        {
+            //If tutorial is running, show tutorial elements
+
+            if (Properties.Settings.Default.runTutorial == true)
+            {
+                if (Properties.Settings.Default.configNameTut == true)
+                {
+                    configNameTut.Visible = true;
+                    processesTut.Visible = true;
+                    previewTut.Visible = true;
+                }
+                else
+                {
+                    configNameTut.Visible = false;
+                    
+                }
+
+                if (Properties.Settings.Default.configSaveTut == true)
+                {
+                    saveConfigTut.Visible = true;
+                    processesTut.Visible = true;
+                    previewTut.Visible = true;
+                }
+                else
+                {
+                    saveConfigTut.Visible = false;
+                }
+            }
+            else
+            {
+                configNameTut.Visible = false;
+                processesTut.Visible = false;
+                previewTut.Visible = false;
+                saveConfigTut.Visible = false;
+            }
         }
 
         // Set screenshot for displays
         public void set_disp()
         {
             int i = 0;
-            Console.WriteLine(screenshotlist.Count());
             foreach (var pb in this.Controls.OfType<PictureBox>())
             {
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
                 if(i < screenshotlist.Count())
                 {
-                    Console.WriteLine(pb.Name);
                     pb.Image = screenshotlist[i];
                 }
                 i++;
@@ -103,7 +142,14 @@ namespace WindowConfiguration
             if(cfg_name_box.Text != "")
             {
                 if (!SqLiteDataAccess.check_table_exists(cfg_name_box.Text))
-                {   
+                {
+                    if (Properties.Settings.Default.runTutorial == true &&
+                         Properties.Settings.Default.configSaveTut == true)
+                    {
+                        Properties.Settings.Default.configSaveTut = false;
+                    }
+                    update_newconfig_tutorial();
+
                     // Add configuration metadata, configuration table and windows to the DB
                     Config_Info new_cfg = new Config_Info();
                     new_cfg.Name = cfg_name_box.Text;
@@ -150,6 +196,21 @@ namespace WindowConfiguration
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void cfg_name_box_TextChanged(object sender, EventArgs e)
+        {
+            //tutorial logic
+            if (cfg_name_box.Text != "")
+            {
+                if (Properties.Settings.Default.runTutorial == true &&
+                Properties.Settings.Default.configNameTut == true)
+                {
+                    Properties.Settings.Default.configNameTut = false;
+                    Properties.Settings.Default.configSaveTut = true;
+                }
+                update_newconfig_tutorial();
+            }
         }
     }
 }

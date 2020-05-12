@@ -45,6 +45,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.save_cfg_btn = new ePOSOne.btnProduct.Button_WOC();
             this.cncl_cfg_btn = new ePOSOne.btnProduct.Button_WOC();
+            this.configNameTut = new System.Windows.Forms.RichTextBox();
+            this.previewTut = new System.Windows.Forms.RichTextBox();
+            this.processesTut = new System.Windows.Forms.RichTextBox();
+            this.saveConfigTut = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.CompanionScreenDisp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrimaryScreenDisp)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +71,7 @@
             this.cfg_name_box.Name = "cfg_name_box";
             this.cfg_name_box.Size = new System.Drawing.Size(338, 26);
             this.cfg_name_box.TabIndex = 1;
+            this.cfg_name_box.TextChanged += new System.EventHandler(this.cfg_name_box_TextChanged);
             // 
             // cfg_desc_label
             // 
@@ -224,12 +229,68 @@
             this.cncl_cfg_btn.UseVisualStyleBackColor = true;
             this.cncl_cfg_btn.Click += new System.EventHandler(this.cncl_cfg_btn_Click);
             // 
+            // configNameTut
+            // 
+            this.configNameTut.BackColor = System.Drawing.Color.Orange;
+            this.configNameTut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.configNameTut.ForeColor = System.Drawing.Color.White;
+            this.configNameTut.Location = new System.Drawing.Point(367, 32);
+            this.configNameTut.Name = "configNameTut";
+            this.configNameTut.ReadOnly = true;
+            this.configNameTut.Size = new System.Drawing.Size(182, 163);
+            this.configNameTut.TabIndex = 32;
+            this.configNameTut.Text = "Tutorial Step 3:                          These text boxes can be used to name an" +
+    "d describe your configuration. Enter a name into the \'Configuration Name\' field!" +
+    "";
+            // 
+            // previewTut
+            // 
+            this.previewTut.BackColor = System.Drawing.Color.Goldenrod;
+            this.previewTut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.previewTut.ForeColor = System.Drawing.Color.White;
+            this.previewTut.Location = new System.Drawing.Point(731, 350);
+            this.previewTut.Name = "previewTut";
+            this.previewTut.ReadOnly = true;
+            this.previewTut.Size = new System.Drawing.Size(182, 70);
+            this.previewTut.TabIndex = 33;
+            this.previewTut.Text = "Helpful Tip:                          Here\'s a preview of your screens!";
+            // 
+            // processesTut
+            // 
+            this.processesTut.BackColor = System.Drawing.Color.Goldenrod;
+            this.processesTut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.processesTut.ForeColor = System.Drawing.Color.White;
+            this.processesTut.Location = new System.Drawing.Point(345, 390);
+            this.processesTut.Name = "processesTut";
+            this.processesTut.ReadOnly = true;
+            this.processesTut.Size = new System.Drawing.Size(182, 86);
+            this.processesTut.TabIndex = 34;
+            this.processesTut.Text = "Helpful Tip:                          Here\'s a list of the applications in your c" +
+    "onfiguration!";
+            // 
+            // saveConfigTut
+            // 
+            this.saveConfigTut.BackColor = System.Drawing.Color.Orange;
+            this.saveConfigTut.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.saveConfigTut.ForeColor = System.Drawing.Color.White;
+            this.saveConfigTut.Location = new System.Drawing.Point(503, 540);
+            this.saveConfigTut.Name = "saveConfigTut";
+            this.saveConfigTut.ReadOnly = true;
+            this.saveConfigTut.Size = new System.Drawing.Size(182, 70);
+            this.saveConfigTut.TabIndex = 35;
+            this.saveConfigTut.Text = "Tutorial Step 4:                          Click \'Save\' to save your new configura" +
+    "tion";
+            // 
             // new_config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1079, 677);
+            this.Controls.Add(this.saveConfigTut);
+            this.Controls.Add(this.processesTut);
+            this.Controls.Add(this.previewTut);
+            this.Controls.Add(this.configNameTut);
             this.Controls.Add(this.cncl_cfg_btn);
             this.Controls.Add(this.save_cfg_btn);
             this.Controls.Add(this.label1);
@@ -271,5 +332,9 @@
         private System.Windows.Forms.Label label1;
         private ePOSOne.btnProduct.Button_WOC save_cfg_btn;
         private ePOSOne.btnProduct.Button_WOC cncl_cfg_btn;
+        private System.Windows.Forms.RichTextBox configNameTut;
+        private System.Windows.Forms.RichTextBox previewTut;
+        private System.Windows.Forms.RichTextBox processesTut;
+        private System.Windows.Forms.RichTextBox saveConfigTut;
     }
 }

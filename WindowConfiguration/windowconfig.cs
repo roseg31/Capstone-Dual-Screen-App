@@ -79,6 +79,77 @@ namespace WindowConfiguration
         {
             InitializeComponent();
             this.Text = "Configuration List";
+            NewConfigTutorial.Visible = false;
+            listTutorial.Visible = false;
+            runTutorial.Visible = false;
+            backTut.Visible = false;
+            desktopTutorial.Visible = false;
+            deleteTutorial.Visible = false;
+            importExportTutorial.Visible = false;
+            update_configlist_tutorial();
+            //Console.WriteLine("5");
+        }
+
+        public void update_configlist_tutorial()
+        {
+            //If tutorial is running, show tutorial elements
+
+            if (Properties.Settings.Default.runTutorial == true)
+            {
+                if(Properties.Settings.Default.createConfigTut == true)
+                {
+                    NewConfigTutorial.Visible = true;
+                }
+                else
+                {
+                    NewConfigTutorial.Visible = false;
+                }
+
+                if (Properties.Settings.Default.selectConfigTut == true)
+                {
+                    listTutorial.Visible = true;
+                }
+                else
+                {
+                    listTutorial.Visible = false;
+                }
+
+                if (Properties.Settings.Default.runConfigTut == true)
+                {
+                    runTutorial.Visible = true;
+                }
+                else
+                {
+                    runTutorial.Visible = false;
+                }
+
+                if (Properties.Settings.Default.wrapupTut == true)
+                {
+                    backTut.Visible = true;
+                    desktopTutorial.Visible = true;
+                    deleteTutorial.Visible = true;
+                    importExportTutorial.Visible = true;
+                }
+                else
+                {
+                    backTut.Visible = false;
+                    desktopTutorial.Visible = false;
+                    deleteTutorial.Visible = false;
+                    importExportTutorial.Visible = false;
+                }
+            }
+            else
+            {
+                NewConfigTutorial.Visible = false;
+                listTutorial.Visible = false;
+                runTutorial.Visible = false;
+                backTut.Visible = false;
+                desktopTutorial.Visible = false;
+                deleteTutorial.Visible = false;
+                importExportTutorial.Visible = false;
+            }
+
+            new_config_page.update_newconfig_tutorial();
         }
 
         // When we load the windowconfig form, we want to display all the user's configurations on the listview
@@ -107,6 +178,15 @@ namespace WindowConfiguration
         // Back button click listener that will use the reference from the homepage form to go back to the homepage
         private void back_btn_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.runTutorial == true &&
+                Properties.Settings.Default.wrapupTut == true)
+            {
+                Properties.Settings.Default.wrapupTut = false;
+                Properties.Settings.Default.endingHomeTut = true;
+                Properties.Settings.Default.createConfigTut = true;
+            }
+            update_configlist_tutorial();
+
             this.Hide();
             this.RefToHompage.Show();
             
@@ -213,6 +293,15 @@ namespace WindowConfiguration
         // new config button listener to open up the new_config form
         private void new_cfg_btn_Click(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.runTutorial == true && 
+                Properties.Settings.Default.createConfigTut == true)
+            {
+                Properties.Settings.Default.createConfigTut = false;
+                Properties.Settings.Default.configNameTut = true;
+                Properties.Settings.Default.selectConfigTut = true;
+            }
+            update_configlist_tutorial();
+
             // Capture the screens and foreground processes and display them in the new_config form
             if (get_processes() != 0)
             {
@@ -226,7 +315,6 @@ namespace WindowConfiguration
                 cfg_err_label.Text = "No Windows to Manage!";
                 cfg_err_label.Visible = true;
             }
-
         }
 
         // Import button listener to open up the import form
@@ -273,6 +361,15 @@ namespace WindowConfiguration
             // Get the image preview stored in the ConfigScreens folder and display them to user
             if (cfg_display.SelectedItems.Count > 0)
             {
+
+                if (Properties.Settings.Default.runTutorial == true &&
+                Properties.Settings.Default.selectConfigTut == true)
+                {
+                    Properties.Settings.Default.selectConfigTut = false;
+                    Properties.Settings.Default.runConfigTut = true;
+                }
+                update_configlist_tutorial();
+
                 //Ungrey the buttons
                 exp_btn.ButtonColor = Color.CornflowerBlue;
                 exp_btn.OnHoverButtonColor = Color.RoyalBlue;
@@ -338,6 +435,14 @@ namespace WindowConfiguration
         {
             if (cfg_display.SelectedItems.Count > 0)
             {
+                if (Properties.Settings.Default.runTutorial == true &&
+                Properties.Settings.Default.runConfigTut == true)
+                {
+                    Properties.Settings.Default.runConfigTut = false;
+                    Properties.Settings.Default.wrapupTut = true;
+                }
+
+                update_configlist_tutorial();
                 string name = cfg_display.SelectedItems[0].Text;
                 run_config(name);
 
@@ -388,11 +493,9 @@ namespace WindowConfiguration
                 if ((hWnd == null || hWnd == IntPtr.Zero) && window.Process_Name != "WindowConfiguration")
                 {
                     Process.Start(window.Exe_Path);
-                    //Console.WriteLine(window.Process_Name);
                     processes = Process.GetProcessesByName(window.Process_Name);
                     foreach (Process p in processes)
                     {
-                        //Console.WriteLine(p.MainModule.ModuleName);
                         hWnd = p.MainWindowHandle;
                         while (hWnd == null || hWnd == IntPtr.Zero)
                         {

@@ -32,6 +32,10 @@
             this.contact_label = new System.Windows.Forms.Label();
             this.button_WOC1 = new ePOSOne.btnProduct.Button_WOC();
             this.button_WOC2 = new ePOSOne.btnProduct.Button_WOC();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tutorialRun = new System.Windows.Forms.CheckBox();
+            this.endTutorial = new System.Windows.Forms.RichTextBox();
+            this.docuTip = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // main_title_label
@@ -96,12 +100,66 @@
             this.button_WOC2.UseVisualStyleBackColor = true;
             this.button_WOC2.Click += new System.EventHandler(this.tutorial_btn_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.Orange;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.ForeColor = System.Drawing.Color.White;
+            this.richTextBox1.Location = new System.Drawing.Point(203, 149);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(182, 70);
+            this.richTextBox1.TabIndex = 6;
+            this.richTextBox1.Text = "Tutorial Step 1:                          Click \'Configuration List\' to get start" +
+    "ed! →";
+            // 
+            // tutorialRun
+            // 
+            this.tutorialRun.AutoSize = true;
+            this.tutorialRun.Location = new System.Drawing.Point(399, 355);
+            this.tutorialRun.Name = "tutorialRun";
+            this.tutorialRun.Size = new System.Drawing.Size(121, 24);
+            this.tutorialRun.TabIndex = 7;
+            this.tutorialRun.Text = "Run Tutorial";
+            this.tutorialRun.UseVisualStyleBackColor = true;
+            this.tutorialRun.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // endTutorial
+            // 
+            this.endTutorial.BackColor = System.Drawing.Color.Orange;
+            this.endTutorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.endTutorial.ForeColor = System.Drawing.Color.White;
+            this.endTutorial.Location = new System.Drawing.Point(121, 318);
+            this.endTutorial.Name = "endTutorial";
+            this.endTutorial.ReadOnly = true;
+            this.endTutorial.Size = new System.Drawing.Size(244, 88);
+            this.endTutorial.TabIndex = 43;
+            this.endTutorial.Text = "Toggle Tutorial:                                                            When " +
+    "you\'re done with the tutorial, you can uncheck this box to exit it!";
+            // 
+            // docuTip
+            // 
+            this.docuTip.BackColor = System.Drawing.Color.Goldenrod;
+            this.docuTip.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.docuTip.ForeColor = System.Drawing.Color.White;
+            this.docuTip.Location = new System.Drawing.Point(578, 224);
+            this.docuTip.Name = "docuTip";
+            this.docuTip.ReadOnly = true;
+            this.docuTip.Size = new System.Drawing.Size(182, 129);
+            this.docuTip.TabIndex = 44;
+            this.docuTip.Text = "Helpful tip:                          If you have questions or want to see the do" +
+    "cumentation for this app, this button will take you to our GitHub!";
+            // 
             // homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(926, 566);
+            this.Controls.Add(this.docuTip);
+            this.Controls.Add(this.endTutorial);
+            this.Controls.Add(this.tutorialRun);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button_WOC2);
             this.Controls.Add(this.button_WOC1);
             this.Controls.Add(this.contact_label);
@@ -119,5 +177,9 @@
         private System.Windows.Forms.Label contact_label;
         private ePOSOne.btnProduct.Button_WOC button_WOC1;
         private ePOSOne.btnProduct.Button_WOC button_WOC2;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.CheckBox tutorialRun;
+        private System.Windows.Forms.RichTextBox endTutorial;
+        private System.Windows.Forms.RichTextBox docuTip;
     }
 }
