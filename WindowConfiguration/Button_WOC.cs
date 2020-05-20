@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+//file retrieved from: csharpui.com/c-custom-round-button/
 namespace ePOSOne.btnProduct
 {
     public class Button_WOC : Button
